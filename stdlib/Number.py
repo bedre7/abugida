@@ -1,4 +1,4 @@
-
+from src.Error.RuntimeError import RuntimeError
 class Number:
     def __init__(self, value):
         self.value = value
@@ -26,6 +26,10 @@ class Number:
     def mult_by(self, other):
         if isinstance(other, Number):
             return Number(self.value * other.value).set_context(self.context), None
+
+    def raised_to(self, other):
+        if isinstance(other, Number):
+            return Number(self.value ** other.value).set_context(self.context), None
 
     def div_by(self, other):
         if isinstance(other, Number):

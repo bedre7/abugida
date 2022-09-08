@@ -15,6 +15,7 @@ class TOKENS(Enum):
     LPAREN   =   'LPAREN'
     RPAREN   =   'RPAREN'
     EOF      =   'EOF'
+    POW      =    'POW'
 
 class Token:
     def __init__(self, type_, value = None, pos_start = None, pos_end = None):

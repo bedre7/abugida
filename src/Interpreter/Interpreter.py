@@ -34,7 +34,9 @@ class Interpreter:
         elif node.op_token.type == TOKENS.MUL.value:
             result, error = left.mult_by(right) 
         elif node.op_token.type == TOKENS.DIV.value:
-            result, error = left.div_by(right) 
+            result, error = left.div_by(right)
+        elif node.op_token.type == TOKENS.POW.value:
+            result, error = left.raised_to(right)
 
         if error:
             return res.failure(error)

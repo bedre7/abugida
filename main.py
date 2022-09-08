@@ -19,5 +19,4 @@ def run(file_name, text):
     context = Context('<program>')
     result = interpreter.visit(AST.node, context)
 
-    # return AST.node, AST.error
     return result.value, result.error

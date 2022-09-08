@@ -1,6 +1,6 @@
 from src.Error.IllegelCharError import IllegelCharError
-from utils.Position import Position
 from src.Lexer.Token import TOKENS, Token
+from utils.Position import Position
 from utils.Constants import SPECIAL_CHARS, DIGITS
 
 class Lexer:
@@ -35,6 +35,9 @@ class Lexer:
             elif self.current_char == SPECIAL_CHARS.DIV.value:
                 tokens.append(Token(TOKENS.DIV.value, pos_start=self.position))
                 self.advance()
+            elif self.current_char == SPECIAL_CHARS.POW.value:
+                tokens.append(Token(TOKENS.POW.value, pos_start=self.position))
+                self.advance()
             elif self.current_char == SPECIAL_CHARS.LPAREN.value:
                 tokens.append(Token(TOKENS.LPAREN.value, pos_start=self.position))
                 self.advance()
@@ -62,7 +65,16 @@ class Lexer:
             
             num_str += self.current_char
             self.advance()
+        
+        # if numbers like .52 was generated, it's converted to -> 0.52
+        if num_str.startswith(SPECIAL_CHARS.DOT.value):
+            num_str = '0' + num_str
+        
+        # if numbers like 2. was generated, it's converted to -> 2.0
+        if num_str.endswith(SPECIAL_CHARS.DOT.value):
+            num_str += '0'
             
         if dot_count == 0:
             return Token(TOKENS.INT.value, int(num_str), pos_start, self.position)
+       
         return Token(TOKENS.FLOAT.value, float(num_str), pos_start, self.position)

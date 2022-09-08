@@ -1,7 +1,7 @@
 from enum import Enum
 
 class SPECIAL_CHARS(Enum):
-    TAB       =   '\t'
+    WHITESPACE  =   ' \t\n'
     NEWLINE   =   '\n'
     SPACE     =   ' '
     PLUS      =   '+'
@@ -11,4 +11,6 @@ class SPECIAL_CHARS(Enum):
     LPAREN    =   '('
     RPAREN    =   ')'
     DOT       =   '.'
+    POW       =   '^'
+
 DIGITS = '0123456789'

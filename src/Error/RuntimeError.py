@@ -1,3 +1,4 @@
+from ast import Num
 from inspect import trace
 from utils.string_with_arrows import string_with_arrows
 from src.Error.Error import Error
@@ -21,7 +22,7 @@ class RuntimeError(Error):
         ctx = self.context
 
         while ctx:
-            trace_back = f' File {ctx_position.file_name}, line {str(ctx_position.line_num + 1)}, in {ctx.display_name}\n' + trace_back
+            trace_back = f' File {ctx_position.file_name}, line {str(ctx_position.line_num + 1)}, in {ctx.display_name}\n'
             ctx_position = ctx.parent_entry_pos
             ctx = ctx.parent
 
