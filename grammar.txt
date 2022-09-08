@@ -1,12 +1,12 @@
-expression      :       KEYWORD:VAR IDENTIFIER EQUALS expression
-                :       term ((PLUS|MINUS) term)*
+expression      :    KEYWORD:VAR IDENTIFIER EQUALS expression
+                :    term ((PLUS|MINUS) term)*
 
-term            :       factor ((MUL|DIV) factor)*
+term            :    factor ((MUL|DIV) factor)*
 
-factor          :       (PLUS|MINUS) factor
-                :       power
+factor          :    (PLUS|MINUS) factor
+                :    power
 
-power           :       atom (POW factor)*
+power           :    atom (POW factor)*
 
-atom            :       INT|FLOAT|IDENTIFIER
-                :       LPAREN expression RPAREN
+atom            :    INT|FLOAT|IDENTIFIER
+                :    LPAREN expression RPAREN

@@ -27,9 +27,9 @@ class TOKENS(Enum):
     MUL         =   'MUL'
     DIV         =   'DIV'
     LPAREN      =   'LPAREN'
+    POW         =   'POW'
     RPAREN      =   'RPAREN'
     EOF         =   'EOF'
-    POW         =   'POW'
 
 KEYWORDS = [
     'VAR'
