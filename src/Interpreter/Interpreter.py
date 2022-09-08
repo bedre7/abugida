@@ -1,5 +1,5 @@
 from stdlib.Number import Number
-from src.Lexer.Token import TOKENS
+from utils.Constants import TOKENS
 from src.Interpreter.RuntimeResult import RuntimeResult
 
 class Interpreter:
@@ -17,6 +17,31 @@ class Interpreter:
         return RuntimeResult().success(
             Number(node.token.value).set_context(context).set_position(node.pos_start, node.pos_end)
         )
+    
+    def visit_VarAccessNode(self, node, context):
+        res = RuntimeResult()
+
+        var_name = node.var_name_token.value
+        value = context.symbol_table.get(var_name)
+
+        if not value:
+            return res.failure(RuntimeError(
+                node.pos_start, node.pos_end,
+                f"'{var_name}' is not defined",
+                context
+            ))
+        
+        return res.success(value)
+    
+    def visit_VarAssignNode(self, node, context):
+        res = RuntimeResult()
+
+        var_name = node.var_name_token.value
+        value = res.regiser(self.visit(node.value_node, context))
+        if res.error : return res
+
+        context.symbol_table.set(var_name, value)
+        return res.success(value)
 
     def visit_BinOpNode(self, node, context):
         res = RuntimeResult()

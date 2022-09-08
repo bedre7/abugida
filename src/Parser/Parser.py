@@ -1,8 +1,9 @@
-from src.Lexer.Token import TOKENS
-from src.Parser.BinOpNode import BinOpNode
-from src.Parser.NumberNode import NumberNode
+from utils.Constants import TOKENS
+from src.Parser.Nodes.VarAccessNode import VarAccessNode
+from src.Parser.Nodes.BinOpNode import BinOpNode
+from src.Parser.Nodes.NumberNode import NumberNode
 from src.Parser.ParseResult import ParseResult
-from src.Parser.UnaryOpNode import UnaryOpNode
+from src.Parser.Nodes.UnaryOpNode import UnaryOpNode
 from src.Error.InvalidSyntaxError import InvalidSyntaxError
 
 class Parser:
@@ -36,6 +37,10 @@ class Parser:
             response.register(self.advance())
             return response.success(NumberNode(token))
         
+        elif token.type == TOKENS.IDENTIFIER.value:
+            response.register(self.advance())
+            return response.success(VarAccessNode(token))
+
         elif token.type == TOKENS.LPAREN.value:
             response.register(self.advance())
             expression = response.register(self.expression())
@@ -44,11 +49,11 @@ class Parser:
             if self.current_tok.type == TOKENS.RPAREN.value:
                 response.register(self.advance())
                 return response.success(expression)
-        else:
-            return response.failure(InvalidSyntaxError(
-                self.current_tok.pos_start, self.current_tok.pos_end,
-                "Expected ')'"
-            ))
+            else:
+                return response.failure(InvalidSyntaxError(
+                    self.current_tok.pos_start, self.current_tok.pos_end,
+                    "Expected ')'"
+                ))
 
         return response.failure(InvalidSyntaxError(
             token.pos_start, token.pos_end, 
@@ -100,6 +105,35 @@ class Parser:
 
     def expression(self):
         response = ParseResult()
+
+        if self.current_tok.matches(TOKENS.KEYWORD.value, 'VAR'):
+            response.register(self.advance())
+
+            if self.current_tok != TOKENS.IDENTIFIER.value:
+                return response.failure(InvalidSyntaxError(
+                    self.current_tok.pos_start, self.current_tok.pos_end,
+                    "Expected identifier"
+                ))
+            
+            var_name = self.current_tok
+            response.register(self.advance())
+
+            if self.current_tok.type != TOKENS.EQUALS.value:
+                return response.failure(InvalidSyntaxError(
+                    self.current_tok.pos_start, self.current_tok.pos_end,
+                    "Expected '='"
+                ))
+            
+            response.register(self.advance())
+            expr = response.register(self.expression())
+
+            if response.error: return response
+
+            return response.success(
+                VarAssignNode(var_name, expr)
+            )
+
+
         left = response.register(self.term())
         if response.error: return response
 

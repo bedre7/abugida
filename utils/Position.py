@@ -1,4 +1,4 @@
-from utils.Constants import SPECIAL_CHARS
+from utils.Constants import SYMBOLS
 
 class Position:
     def __init__(self, index, line_num, column_num, file_name, file_text):
@@ -12,7 +12,7 @@ class Position:
         self.index += 1
         self.column_num += 1
 
-        if current_char == SPECIAL_CHARS.NEWLINE.value:
+        if current_char == SYMBOLS.NEWLINE.value:
             self.goto_next_line()
         
         return self

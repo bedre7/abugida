@@ -3,20 +3,6 @@
 ##########################################
 
 from enum import Enum
-
-
-class TOKENS(Enum):
-    INT      =   'INT'
-    FLOAT    =   'FLOAT'
-    PLUS     =   'PLUS'
-    MINUS    =   'MINUS'
-    MUL      =   'MUL'
-    DIV      =   'DIV'
-    LPAREN   =   'LPAREN'
-    RPAREN   =   'RPAREN'
-    EOF      =   'EOF'
-    POW      =    'POW'
-
 class Token:
     def __init__(self, type_, value = None, pos_start = None, pos_end = None):
         self.type = type_
@@ -29,7 +15,9 @@ class Token:
 
         if pos_end:
             self.pos_end = pos_end.clone() 
-
+    def matches(self, type_, value):
+        return self.type == type_ and self.value == value
+        
     def __repr__(self):
         if self.value: return f'{self.type}:{self.value}'
         return f'{self.type}'
