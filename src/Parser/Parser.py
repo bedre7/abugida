@@ -1,5 +1,6 @@
 from utils.Constants import TOKENS
 from src.Parser.Nodes.VarAccessNode import VarAccessNode
+from src.Parser.Nodes.VarAssignNode import VarAssignNode
 from src.Parser.Nodes.BinOpNode import BinOpNode
 from src.Parser.Nodes.NumberNode import NumberNode
 from src.Parser.ParseResult import ParseResult
@@ -109,7 +110,7 @@ class Parser:
         if self.current_tok.matches(TOKENS.KEYWORD.value, 'VAR'):
             response.register(self.advance())
 
-            if self.current_tok != TOKENS.IDENTIFIER.value:
+            if self.current_tok.type != TOKENS.IDENTIFIER.value:
                 return response.failure(InvalidSyntaxError(
                     self.current_tok.pos_start, self.current_tok.pos_end,
                     "Expected identifier"

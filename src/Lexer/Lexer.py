@@ -66,7 +66,7 @@ class Lexer:
             identifier += self.current_char
             self.advance()
         
-        token_type = TOKENS.KEYWORD.value if identifier in TOKENS.KEYWORD.value else TOKENS.IDENTIFIER.value
+        token_type = TOKENS.KEYWORD.value if identifier in KEYWORDS else TOKENS.IDENTIFIER.value
         return Token(token_type, identifier, pos_start, self.position)  
 
     def make_number(self):

@@ -37,10 +37,10 @@ class Interpreter:
         res = RuntimeResult()
 
         var_name = node.var_name_token.value
-        value = res.regiser(self.visit(node.value_node, context))
+        value = res.register(self.visit(node.value_node, context))
         if res.error : return res
 
-        context.symbol_table.set(var_name, value)
+        context.symbol_table.set_value(var_name, value)
         return res.success(value)
 
     def visit_BinOpNode(self, node, context):
