@@ -22,7 +22,7 @@ class Interpreter:
         res = RuntimeResult()
 
         var_name = node.var_name_token.value
-        value = context.symbol_table.get(var_name)
+        value = context.symbol_table.get_value(var_name)
 
         if not value:
             return res.failure(RuntimeError(
@@ -30,7 +30,7 @@ class Interpreter:
                 f"'{var_name}' is not defined",
                 context
             ))
-        
+        value = value.clone().set_position(node.pos_start, node.pos_end)
         return res.success(value)
     
     def visit_VarAssignNode(self, node, context):

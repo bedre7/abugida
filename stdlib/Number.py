@@ -15,6 +15,12 @@ class Number:
         self.context = context
         return self
 
+    def clone(self):
+        clone = Number(self.value)
+        clone.set_position(self.pos_start, self.pos_end)
+        clone.set_context(self.context)
+        return clone
+
     def add_to(self, other):
         if isinstance(other, Number):
             return Number(self.value + other.value).set_context(self.context), None
