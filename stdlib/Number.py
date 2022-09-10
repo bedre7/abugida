@@ -83,6 +83,9 @@ class Number:
     
     def notted(self):
         return Number(1 if self.value == 0 else 0).set_context(self.context), None
+    
+    def is_true(self):
+        return self.value != 0
 
     def __repr__(self) -> str:
         return str(self.value)

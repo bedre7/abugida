@@ -24,17 +24,20 @@ class SYMBOLS(Enum):
 class TOKENS(Enum):
     INT         =   'INT'
     FLOAT       =   'FLOAT'
+
     IDENTIFIER  =   'IDENTIFIER'
     KEYWORD     =   'KEYWORD'
+    EOF         =   'EOF'
+
     EQUALS      =   'EQUALS'
     PLUS        =   'PLUS'
     MINUS       =   'MINUS'
     MUL         =   'MUL'
     DIV         =   'DIV'
-    LPAREN      =   'LPAREN'
     POW         =   'POW'
+    LPAREN      =   'LPAREN'
     RPAREN      =   'RPAREN'
-    EOF         =   'EOF'
+
     EQ          =   'EQ'
     NEQ         =   'NEQ'
     LTH         =   'LTH'
@@ -45,11 +48,20 @@ class TOKENS(Enum):
     OR          =   'OR'
     NOT         =   'NOT'
 
+    IF          =   'IF'
+    THEN        =   'THEN'
+    ELIF        =   'ELIF'
+    ELSE        =   'ELSE'
+
 KEYWORDS = [
     'VAR',
     'AND',
     'OR',
-    'NOT'
+    'NOT',
+    'IF',
+    'THEN',
+    'ELIF',
+    'ELSE'
 ]
 
 DIGITS = '0123456789'

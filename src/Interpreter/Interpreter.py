@@ -1,3 +1,4 @@
+from urllib.parse import ParseResult
 from stdlib.Number import Number
 from utils.Constants import TOKENS
 from src.Interpreter.RuntimeResult import RuntimeResult
@@ -105,3 +106,24 @@ class Interpreter:
         return res.success(
             number.set_position(node.pos_start, node.pos_end
             ))
+
+    def visit_IfNode(self, node, context):
+        response = RuntimeResult()
+
+        for condition, expr in node.cases:
+            condition_value = response.register(self.visit(condition, context))
+            if response.error: return response
+
+            if condition_value.is_true():
+                expr_value = response.register(self.visit(expr, context))
+                if response.error: return response
+
+                return response.success(expr_value)
+        
+        if node.else_case:
+            else_value = response.register(self.visit(node.else_case, context))
+            if response.error: return response
+            return response.success(else_value)
+        
+        return response.success(None)
+            

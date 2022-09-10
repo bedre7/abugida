@@ -6,7 +6,7 @@ while True:
     result, error = main.run('<stdin>', text)
 
     if error: print(error.message())
-    else: print(result)
+    elif result: print(result)
 
 
 # hello = 'ሃለመሰረሰሸቀበተቸኘአከሀወዘጀየደገፐፈቨ'

@@ -1,6 +1,7 @@
 from utils.Constants import SYMBOLS, TOKENS
 from src.Parser.Nodes.VarAccessNode import VarAccessNode
 from src.Parser.Nodes.VarAssignNode import VarAssignNode
+from src.Parser.Nodes.IfNode import IfNode
 from src.Parser.Nodes.BinOpNode import BinOpNode
 from src.Parser.Nodes.NumberNode import NumberNode
 from src.Parser.ParseResult import ParseResult
@@ -61,6 +62,12 @@ class Parser:
                     self.current_tok.pos_start, self.current_tok.pos_end,
                     "Expected ')'"
                 ))
+        
+        elif token.matches(TOKENS.KEYWORD.value, TOKENS.IF.value):
+            if_expr = response.register(self.if_expression())
+
+            if response.error : return response
+            return response.success(if_expr)
 
         return response.failure(InvalidSyntaxError(
             token.pos_start, token.pos_end, 
@@ -157,6 +164,67 @@ class Parser:
             left = BinOpNode(left, operand_token, right)
         
         return response.success(left)
+    
+    def if_expression(self):
+        response = ParseResult()
+        cases = []
+        else_case = None
+
+        if not self.current_tok.matches(TOKENS.KEYWORD.value, TOKENS.IF.value):
+            return response.failure(InvalidSyntaxError(
+                self.current_tok.pos_start, self.current_tok.pos_end,
+                f"Expected 'IF'"
+            ))
+        
+        response.register_advance()
+        self.advance()
+
+        condition = response.register(self.expression())
+        if response.error: return response
+
+        if not self.current_tok.matches(TOKENS.KEYWORD.value, TOKENS.THEN.value):
+            return response.failure(InvalidSyntaxError(
+                self.current_tok.pos_start, self.current_tok.pos_end,
+                f"Expected 'THEN'"
+            ))
+        
+        response.register_advance()
+        self.advance()
+
+        expr = response.register(self.expression())
+        if response.error: return response
+
+        cases.append((condition, expr))
+
+        while self.current_tok.matches(TOKENS.KEYWORD.value, TOKENS.ELIF.value):
+            response.register_advance()
+            self.advance()
+
+            condition = response.register(self.expression())
+            if response.error: return response
+
+            if not self.current_tok.matches(TOKENS.KEYWORD.value, TOKENS.THEN.value):
+                return response.failure(InvalidSyntaxError(
+                    self.current_tok.pos_start, self.current_tok.pos_end,
+                    f"Expected 'THEN'"
+                ))
+            
+            response.register_advance()
+            self.advance()
+
+            expr = response.register(self.expression())
+            if response.error: return response
+
+            cases.append((condition, expr))
+
+        if self.current_tok.matches(TOKENS.KEYWORD.value, TOKENS.ELSE.value):
+            response.register_advance()
+            self.advance()
+
+            else_case = response.register(self.expression())
+            if response.error: return response
+
+        return response.success(IfNode(cases, else_case))
 
     def expression(self):
         response = ParseResult()

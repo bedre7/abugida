@@ -1,3 +1,4 @@
+from logging.config import IDENTIFIER
 from src.Error.IllegelCharError import IllegelCharError
 from utils.Position import Position
 from src.Lexer.Token import *
