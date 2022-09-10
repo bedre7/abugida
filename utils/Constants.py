@@ -15,6 +15,11 @@ class SYMBOLS(Enum):
     DOT            =   '.'
     POW            =   '^'
     UNDERSCORE     =   '_'
+    NEQ            =   '!='
+    LTH            =   '<'
+    GTH            =   '>'
+    LTHE           =   '<='
+    GTHE           =   '>='
 
 class TOKENS(Enum):
     INT         =   'INT'
@@ -30,9 +35,21 @@ class TOKENS(Enum):
     POW         =   'POW'
     RPAREN      =   'RPAREN'
     EOF         =   'EOF'
+    EQ          =   'EQ'
+    NEQ         =   'NEQ'
+    LTH         =   'LTH'
+    GTH         =   'GTH'
+    LTHE        =   'LTHE'
+    GTHE        =   'GTHE'
+    AND         =   'AND'
+    OR          =   'OR'
+    NOT         =   'NOT'
 
 KEYWORDS = [
-    'VAR'
+    'VAR',
+    'AND',
+    'OR',
+    'NOT'
 ]
 
 DIGITS = '0123456789'

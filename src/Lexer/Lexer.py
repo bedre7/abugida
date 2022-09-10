@@ -40,15 +40,23 @@ class Lexer:
             elif self.current_char == SYMBOLS.POW.value:
                 tokens.append(Token(TOKENS.POW.value, pos_start=self.position))
                 self.advance()
-            elif self.current_char == SYMBOLS.EQUALS.value:
-                tokens.append(Token(TOKENS.EQUALS.value, pos_start=self.position))
-                self.advance()
             elif self.current_char == SYMBOLS.LPAREN.value:
                 tokens.append(Token(TOKENS.LPAREN.value, pos_start=self.position))
                 self.advance()
             elif self.current_char == SYMBOLS.RPAREN.value:
                 tokens.append(Token(TOKENS.RPAREN.value, pos_start=self.position))
                 self.advance()
+            elif self.current_char == SYMBOLS.NEQ.value:
+                token, error = self.make_not_equals()
+                if error: return [], error
+                tokens.append(token)
+                # self.advance()
+            elif self.current_char == SYMBOLS.EQUALS.value:
+                tokens.append(self.make_equals())
+            elif self.current_char == SYMBOLS.LTH.value:
+                tokens.append(self.make_less_than())
+            elif self.current_char == SYMBOLS.GTH.value:
+                tokens.append(self.make_greater_than())
             else:
                 pos_start = self.position.clone()
                 char = self.current_char
@@ -57,6 +65,54 @@ class Lexer:
 
         tokens.append(Token(TOKENS.EOF.value, pos_start = self.position))
         return tokens, None
+    
+    def make_not_equals(self):
+        pos_start = self.position.clone()
+        self.advance()
+
+        if self.current_char == SYMBOLS.EQUALS.value:
+            self.advance()
+            return Token(TOKENS.NEQ.value, pos_start=pos_start, pos_end=self.position), None
+        
+        self.advance()
+        return None, ExpectedCharError(pos_start, self.position
+        , "'=' (after '!')")
+    
+    def make_equals(self):
+        token_type = TOKENS.EQUALS.value
+
+        pos_start = self.position.clone()
+        self.advance()
+
+        if self.current_char == SYMBOLS.EQUALS.value:
+            token_type = TOKENS.EQ.value
+            self.advance()
+        
+        return Token(token_type, pos_start=pos_start, pos_end=self.position)
+    
+    def make_less_than(self):
+        token_type = TOKENS.LTH.value
+
+        pos_start = self.position.clone()
+        self.advance()
+
+        if self.current_char == SYMBOLS.EQUALS.value:
+            token_type = TOKENS.LTHE.value
+            self.advance()
+        
+        return Token(token_type, pos_start=pos_start, pos_end=self.position)
+    
+    def make_greater_than(self):
+        token_type = TOKENS.GTH.value
+
+        pos_start = self.position.clone()
+        self.advance()
+
+        if self.current_char == SYMBOLS.EQUALS.value:
+            token_type = TOKENS.GTHE.value
+            self.advance()
+        
+        return Token(token_type, pos_start=pos_start, pos_end=self.position)
     
     def make_identifier(self):
         identifier = ''

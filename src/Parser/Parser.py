@@ -1,4 +1,4 @@
-from utils.Constants import TOKENS
+from utils.Constants import SYMBOLS, TOKENS
 from src.Parser.Nodes.VarAccessNode import VarAccessNode
 from src.Parser.Nodes.VarAssignNode import VarAssignNode
 from src.Parser.Nodes.BinOpNode import BinOpNode
@@ -112,6 +112,51 @@ class Parser:
             left = BinOpNode(left, operand_token, right)
         
         return response.success(left)
+    
+    def arith_expression(self):
+        response = ParseResult()
+        left = response.register(self.term())
+        if response.error: return response
+
+        while self.current_tok.type in (TOKENS.PLUS.value, TOKENS.MINUS.value):
+            operand_token = self.current_tok
+            response.register_advance()
+            self.advance()
+            right = response.register(self.term())
+
+            if response.error : return response
+            left = BinOpNode(left, operand_token, right)
+        
+        return response.success(left)
+
+    def comp_expression(self):
+        response = ParseResult()
+
+        if self.current_tok.matches(TOKENS.KEYWORD.value, TOKENS.NOT.value):
+            op_token = self.current_tok
+            response.register_advance()
+            self.advance()
+
+            node  = response.register(self.comp_expression())
+            if response.error: return response
+            return response.success(UnaryOpNode(op_token, node)) 
+            
+        left = response.register(self.arith_expression())
+        if response.error: return response
+        
+        while self.current_tok.type in (TOKENS.EQ.value, TOKENS.NEQ.value, TOKENS.LTH.value, TOKENS.LTHE.value, TOKENS.GTH.value, TOKENS.GTHE.value):
+            operand_token = self.current_tok
+            response.register_advance()
+            self.advance()
+            right = response.register(self.arith_expression())
+
+            if response.error : return response.failure(InvalidSyntaxError(
+                 self.current_tok.pos_start, self.current_tok.pos_end, 
+                "Expected int, float, identifier, '+', '-', 'NOT' or '('"
+            ))
+            left = BinOpNode(left, operand_token, right)
+        
+        return response.success(left)
 
     def expression(self):
         response = ParseResult()
@@ -147,14 +192,14 @@ class Parser:
             )
 
 
-        left = response.register(self.term())
+        left = response.register(self.comp_expression())
         if response.error: return response
 
-        while self.current_tok.type in (TOKENS.PLUS.value, TOKENS.MINUS.value):
+        while (self.current_tok.type, self.current_tok.value) in ((TOKENS.KEYWORD.value, TOKENS.AND.value), (TOKENS.KEYWORD.value, TOKENS.OR.value)):
             operand_token = self.current_tok
             response.register_advance()
             self.advance()
-            right = response.register(self.term())
+            right = response.register(self.comp_expression())
 
             if response.error : return response
             left = BinOpNode(left, operand_token, right)

@@ -1,4 +1,5 @@
 from src.Error.RuntimeError import RuntimeError
+
 class Number:
     def __init__(self, value):
         self.value = value
@@ -47,6 +48,41 @@ class Number:
                 )
 
             return Number(self.value / other.value).set_context(self.context), None
+
+    def get_comparison_eq(self, other):
+        if isinstance(other, Number):
+            return Number(int(self.value == other.value)).set_context(self.context), None
+            
+    def get_comparison_neq(self, other):
+        if isinstance(other, Number):
+            return Number(int(self.value != other.value)).set_context(self.context), None
+            
+    def get_comparison_lth(self, other):
+        if isinstance(other, Number):
+            return Number(int(self.value < other.value)).set_context(self.context), None
+            
+    def get_comparison_gth(self, other):
+        if isinstance(other, Number):
+            return Number(int(self.value > other.value)).set_context(self.context), None
+            
+    def get_comparison_lthe(self, other):
+        if isinstance(other, Number):
+            return Number(int(self.value <= other.value)).set_context(self.context), None
+            
+    def get_comparison_gthe(self, other):
+        if isinstance(other, Number):
+            return Number(int(self.value >= other.value)).set_context(self.context), None
+            
+    def and_with(self, other):
+        if isinstance(other, Number):
+            return Number(int(self.value and other.value)).set_context(self.context), None
+            
+    def or_with(self, other):
+        if isinstance(other, Number):
+            return Number(int(self.value or other.value)).set_context(self.context), None
     
+    def notted(self):
+        return Number(1 if self.value == 0 else 0).set_context(self.context), None
+
     def __repr__(self) -> str:
         return str(self.value)

@@ -6,6 +6,7 @@ class ParseResult:
     
     def register_advance(self):
         self.advance_count += 1
+        
     def register(self, response):
         self.advance_count += response.advance_count
         if response.error: self.error = response.error

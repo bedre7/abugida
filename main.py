@@ -6,7 +6,10 @@ from src.Parser.Parser import Parser
 from utils.Context import Context
 
 global_symbol_table = SymbolTable()
-global_symbol_table.set_value("null", Number(0))
+global_symbol_table.set_value("NULL", Number(0))
+global_symbol_table.set_value("TRUE", Number(1))
+global_symbol_table.set_value("FALSE", Number(0))
+
 def run(file_name, text):
     #Generate tokens
     lexer = Lexer(file_name, text)

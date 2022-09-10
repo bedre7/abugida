@@ -62,6 +62,22 @@ class Interpreter:
             result, error = left.div_by(right)
         elif node.op_token.type == TOKENS.POW.value:
             result, error = left.raised_to(right)
+        elif node.op_token.type == TOKENS.EQ.value:
+            result, error = left.get_comparison_eq(right)
+        elif node.op_token.type == TOKENS.NEQ.value:
+            result, error = left.get_comparison_neq(right)
+        elif node.op_token.type == TOKENS.LTH.value:
+            result, error = left.get_comparison_lth(right)
+        elif node.op_token.type == TOKENS.GTH.value:
+            result, error = left.get_comparison_gth(right)
+        elif node.op_token.type == TOKENS.LTHE.value:
+            result, error = left.get_comparison_lthe(right)
+        elif node.op_token.type == TOKENS.GTHE.value:
+            result, error = left.get_comparison_gthe(right)
+        elif node.op_token.matches(TOKENS.KEYWORD.value, TOKENS.AND.value):
+            result, error = left.and_with(right)
+        elif node.op_token.matches(TOKENS.KEYWORD.value, TOKENS.OR.value):
+            result, error = left.or_with(right)
 
         if error:
             return res.failure(error)
@@ -80,6 +96,8 @@ class Interpreter:
 
         if node.op_token.type == TOKENS.MINUS.value:
             number, error = number.mult_by(Number(-1))
+        elif node.op_token.matches(TOKENS.KEYWORD.value, TOKENS.AND.value):
+            number, error = number.notted()
 
         if error:
             return res.failure(error)
