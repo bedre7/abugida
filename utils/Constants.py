@@ -53,6 +53,11 @@ class TOKENS(Enum):
     ELIF        =   'ELIF'
     ELSE        =   'ELSE'
 
+    FOR         =   'FOR'
+    WHILE       =   'WHILE'
+    TO          =   'TO'
+    STEP        =   'STEP'
+
 KEYWORDS = [
     'VAR',
     'AND',
@@ -62,6 +67,10 @@ KEYWORDS = [
     'THEN',
     'ELIF',
     'ELSE'
+    'FOR'
+    'TO'
+    'STEP'
+    'WHILE'
 ]
 
 DIGITS = '0123456789'

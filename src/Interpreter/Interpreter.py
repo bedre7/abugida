@@ -1,3 +1,5 @@
+from ast import Num
+from urllib import response
 from urllib.parse import ParseResult
 from stdlib.Number import Number
 from utils.Constants import TOKENS
@@ -126,4 +128,53 @@ class Interpreter:
             return response.success(else_value)
         
         return response.success(None)
+    
+    def visit_ForNode(self, node, context):
+        response = RuntimeResult()
+
+        start_value = response.register(self.visit(node.start_value_node, context))
+        if response.error: return response
+
+        end_value = response.register(self.visit(node.end_value, context))
+        if response.error: return response
+
+        if node.step_value_node:
+            step_value = response.register(self.visit(node.start_value_node, context))
+            if response.error: return response
+        else:
+            step_value = Number(1)
+        
+        i = start_value.value
+
+        if step_value.value >= 0:
+            condition = lambda: i < end_value.value
+        else:
+            condition = lambda: i > end_value.value
+        
+        while condition():
+            context.symbol_table.set_value(node.var_name_token.value, Number(i))
+            i += step_value.value
+
+            response.register(self.visit(node.body_node, context))
+            if response.error: return response
+
+        
+        return response.success(None)
+    
+    def visit_WhileNode(self, node, context):
+        response = RuntimeResult()
+
+        while True:
+            condition = response.register(self.visit(node.condition_node, context))
+            if response.error: return response
+
+            if not condition.is_true(): break
+
+            response.register(self.visit(node.body_node, context))
+            if response.error: return response
+        
+        return response.success(None)
+
+                
+        
             

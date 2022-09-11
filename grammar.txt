@@ -15,7 +15,15 @@ power                 :    atom (POW factor)*
 
 atom                  :    INT|FLOAT|IDENTIFIER
                       :    LPAREN expression RPAREN
+                      :    if-expression
+                      :    for-expression
+                      :    while-expression
 
 if-expression         :    KEYWORD: IF expression KEYWORD:THEN expression
                            (KEYWORD:ELIF expression KEYWORD:THEN expression)*
                            (KEYWORD:ELSE expression)?
+
+for-expression        :    KEYWORD:FOR IDENTIFIER EQUALS expression KEYWORD:TO expression
+                           (KEYWORD:STEP expression)? KEYWORD:THEN expression
+
+for-expression        :    KEYWORD:WHILE expression KEYWORD:THEN expression
