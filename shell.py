@@ -8,7 +8,6 @@ while True:
     if error: print(error.message())
     elif result: print(result)
 
-
 # hello = 'ሃለመሰረሰሸቀበተቸኘአከሀወዘጀየደገፐፈቨ'
 # test = 'ሃለመሰረሰሸቀበተቸኘአከሀወዘጀየደገፐፈቨ'
 # print(hello, test)

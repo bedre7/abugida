@@ -1,3 +1,4 @@
+from tkinter import LEFT
 from utils.Constants import TOKENS
 from src.Parser.Nodes.ForNode import ForNode
 from src.Parser.Nodes.WhileNode import WhileNode
@@ -271,7 +272,7 @@ class Parser:
         response.register_advance()
         self.advance()
 
-        start_value = self.register(self.expression())
+        start_value = response.register(self.expression())
         if response.error: return response
 
         if not self.current_tok.matches(TOKENS.KEYWORD.value, TOKENS.TO.value):
@@ -296,7 +297,7 @@ class Parser:
             step_value = None
 
         if not self.current_tok.matches(TOKENS.KEYWORD.value, TOKENS.THEN.value):
-            return response.failure(InvalidSyntaxError(
+             return response.failure(InvalidSyntaxError(
                 self.current_tok.pos_start, self.current_tok.pos_end,
                 f"Expeceted 'THEN'"
             ))
@@ -388,7 +389,7 @@ class Parser:
         if response.error:
             return response.failure(InvalidSyntaxError(
                 self.current_tok.pos_start, self.current_tok.pos_end,
-                "Expected 'VAR', int, float, identifierm '+', '-' or '('"
+                "Expected 'VAR', int, float, identifier, '+', '-' or '('"
             ))
 
         return response.success(left)

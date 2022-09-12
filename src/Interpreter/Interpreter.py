@@ -131,11 +131,10 @@ class Interpreter:
     
     def visit_ForNode(self, node, context):
         response = RuntimeResult()
-
         start_value = response.register(self.visit(node.start_value_node, context))
         if response.error: return response
 
-        end_value = response.register(self.visit(node.end_value, context))
+        end_value = response.register(self.visit(node.end_value_node, context))
         if response.error: return response
 
         if node.step_value_node:
@@ -158,7 +157,6 @@ class Interpreter:
             response.register(self.visit(node.body_node, context))
             if response.error: return response
 
-        
         return response.success(None)
     
     def visit_WhileNode(self, node, context):

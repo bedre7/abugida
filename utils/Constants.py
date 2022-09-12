@@ -66,10 +66,10 @@ KEYWORDS = [
     'IF',
     'THEN',
     'ELIF',
-    'ELSE'
-    'FOR'
-    'TO'
-    'STEP'
+    'ELSE',
+    'FOR',
+    'TO',
+    'STEP',
     'WHILE'
 ]
 

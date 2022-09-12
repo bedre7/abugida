@@ -1,5 +1,5 @@
-from logging.config import IDENTIFIER
 from src.Error.IllegelCharError import IllegelCharError
+from src.Error.ExpectedCharError import ExpectedCharError
 from utils.Position import Position
 from src.Lexer.Token import *
 from utils.Constants import *

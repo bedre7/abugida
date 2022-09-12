@@ -20,7 +20,6 @@ def run(file_name, text):
     parser = Parser(tokens)
     AST = parser.parse()
     if AST.error: return None, AST.error
-
     #Run Program
     interpreter = Interpreter()
     context = Context('<program>')
