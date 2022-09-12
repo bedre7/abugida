@@ -20,6 +20,8 @@ class SYMBOLS(Enum):
     GTH            =   '>'
     LTHE           =   '<='
     GTHE           =   '>='
+    COMMA          =   ','
+    ARROW          =   '->'
 
 class TOKENS(Enum):
     INT         =   'INT'
@@ -58,6 +60,10 @@ class TOKENS(Enum):
     TO          =   'TO'
     STEP        =   'STEP'
 
+    STRING      =   'STRING'
+    COMMA       =   'COMMA'
+    ARROW       =   'ARROW'
+
 KEYWORDS = [
     'VAR',
     'AND',
@@ -70,6 +76,7 @@ KEYWORDS = [
     'FOR',
     'TO',
     'STEP',
+    'FUN',
     'WHILE'
 ]
 

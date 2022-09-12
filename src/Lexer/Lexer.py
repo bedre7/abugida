@@ -1,3 +1,4 @@
+from pickle import FALSE
 from src.Error.IllegelCharError import IllegelCharError
 from src.Error.ExpectedCharError import ExpectedCharError
 from utils.Position import Position
@@ -26,11 +27,12 @@ class Lexer:
                 tokens.append(self.make_number())
             elif self.current_char in LETTERS:
                 tokens.append(self.make_identifier())
+            elif self.current_char == '"':
+                tokens.append(self.make_string())
+            elif self.current_char == SYMBOLS.MINUS.value:
+                tokens.append(self.make_minus_or_arrow())
             elif self.current_char == SYMBOLS.PLUS.value:
                 tokens.append(Token(TOKENS.PLUS.value, pos_start=self.position))
-                self.advance()
-            elif self.current_char == SYMBOLS.MINUS.value:
-                tokens.append(Token(TOKENS.MINUS.value, pos_start=self.position))
                 self.advance()
             elif self.current_char == SYMBOLS.MUL.value:
                 tokens.append(Token(TOKENS.MUL.value, pos_start=self.position))
@@ -51,13 +53,15 @@ class Lexer:
                 token, error = self.make_not_equals()
                 if error: return [], error
                 tokens.append(token)
-                # self.advance()
             elif self.current_char == SYMBOLS.EQUALS.value:
                 tokens.append(self.make_equals())
             elif self.current_char == SYMBOLS.LTH.value:
                 tokens.append(self.make_less_than())
             elif self.current_char == SYMBOLS.GTH.value:
                 tokens.append(self.make_greater_than())
+            elif self.current_char == SYMBOLS.COMMA.value:
+                tokens.append(Token(TOKENS.COMMA.value, pos_start=self.position))
+                self.advance()
             else:
                 pos_start = self.position.clone()
                 char = self.current_char
@@ -151,3 +155,43 @@ class Lexer:
             return Token(TOKENS.INT.value, int(num_str), pos_start, self.position)
        
         return Token(TOKENS.FLOAT.value, float(num_str), pos_start, self.position)
+    
+    def make_string(self):
+        string = ''
+        pos_start = self.position.clone()
+
+        escape_char = False
+        self.advance()
+
+        escape_chars = {
+            'n': '\n',
+            't': '\t'
+        }
+
+        while self.current_char != None and (self.current_char != '"' or escape_char):
+            if escape_char:
+                string += escape_chars.get(self.current_char, self.current_char)
+            else:
+                if self.current_char == '\\':
+                    escape_char = True
+                else: 
+                    string += self.current_char
+
+            self.advance()
+            escape_char = False
+
+        self.advance()
+        return Token(TOKENS.STRING.value, pos_start, self.position)
+    
+    def make_minus_or_arrow(self):
+        token_type = TOKENS.MINUS.value
+        pos_start = self.position.clone()
+        self.advance()
+
+        if self.current_char == '>':
+            self.advance()
+            token_type = TOKENS.ARROW.value
+        
+        return Token(token_type, pos_start=pos_start, pos_end=self.position)
+
+

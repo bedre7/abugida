@@ -1,4 +1,5 @@
 from tkinter import LEFT
+from src.Parser.Nodes.StringNode import StringNode
 from utils.Constants import TOKENS
 from src.Parser.Nodes.ForNode import ForNode
 from src.Parser.Nodes.WhileNode import WhileNode
@@ -39,12 +40,16 @@ class Parser:
         token = self.current_tok
 
         if token.type in (TOKENS.INT.value, TOKENS.FLOAT.value):
-            # response.register_advance()
             response.register_advance()
             self.advance()
             
             return response.success(NumberNode(token))
         
+        elif token.type == TOKENS.STRING.value:
+            response.register_advance()
+            self.advance()
+            return response.success(StringNode(token))
+
         elif token.type == TOKENS.IDENTIFIER.value:
             response.register_advance()
             self.advance()
