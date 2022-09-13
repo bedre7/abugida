@@ -1,4 +1,3 @@
-from tkinter import LEFT
 from src.Parser.Nodes.StringNode import StringNode
 from utils.Constants import TOKENS
 from src.Parser.Nodes.ForNode import ForNode

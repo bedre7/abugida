@@ -181,7 +181,7 @@ class Lexer:
             escape_char = False
 
         self.advance()
-        return Token(TOKENS.STRING.value, pos_start, self.position)
+        return Token(TOKENS.STRING.value, string, pos_start, self.position)
     
     def make_minus_or_arrow(self):
         token_type = TOKENS.MINUS.value

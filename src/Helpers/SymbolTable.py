@@ -1,7 +1,7 @@
 class SymbolTable:
-    def __init__(self):
+    def __init__(self, parent=None):
         self.symbols = {}
-        self.parent = None
+        self.parent = parent
     
     def get_value(self, var_name):
         value = self.symbols.get(var_name, None)

@@ -1,9 +1,8 @@
-from ast import Num
-from urllib import response
-from urllib.parse import ParseResult
+from stdlib.String import String
 from stdlib.Number import Number
 from utils.Constants import TOKENS
 from src.Interpreter.RuntimeResult import RuntimeResult
+from src.Error.RuntimeError import RuntimeError
 
 class Interpreter:
     def visit(self, node, context):
@@ -172,6 +171,11 @@ class Interpreter:
             if response.error: return response
         
         return response.success(None)
+
+    def visit_StringNode(self, node, context):
+        return RuntimeResult().success(
+            String(node.token.value).set_context(context).set_position(node.pos_start, node.pos_end
+            ))
 
                 
         

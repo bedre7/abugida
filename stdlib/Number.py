@@ -1,20 +1,10 @@
 from src.Error.RuntimeError import RuntimeError
+from stdlib.Type import Type
 
-class Number:
+class Number(Type):
     def __init__(self, value):
+        super().__init__()
         self.value = value
-        self.set_position()
-        self.set_context()
-    
-    def set_position(self, pos_start = None, pos_end = None):
-        self.pos_start = pos_start
-        self.pos_end = pos_end
-        
-        return self
-
-    def set_context(self, context=None):
-        self.context = context
-        return self
 
     def clone(self):
         clone = Number(self.value)
