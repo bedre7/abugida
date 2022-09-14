@@ -1,4 +1,5 @@
 from src.Parser.Nodes.StringNode import StringNode
+from src.Parser.Nodes.ListNode import ListNode
 from utils.Constants import TOKENS
 from src.Parser.Nodes.ForNode import ForNode
 from src.Parser.Nodes.WhileNode import WhileNode
@@ -70,6 +71,12 @@ class Parser:
                     "Expected ')'"
                 ))
         
+        elif token.type == TOKENS.LSQUARE.value:
+            list_expr = response.register(self.list_expr())
+            
+            if response.error:  return response
+            return response.success(list_expr)
+
         elif token.matches(TOKENS.KEYWORD.value, TOKENS.IF.value):
             if_expr = response.register(self.if_expression())
 
@@ -343,6 +350,53 @@ class Parser:
         if response.error: return response
 
         return response.success(WhileNode(condition, body))
+
+    def list_expr(self):
+        response = ParseResult()
+        element_nodes = []
+        pos_start = self.current_tok.pos_start.clone()
+
+        if self.current_tok.type != TOKENS.LSQUARE.value:
+            return response.failure(InvalidSyntaxError(
+                    self.current_tok.pos_start, self.current_tok.pos_end,
+                    f"Expected '['"
+                )) 
+        
+        response.register_advance()
+        self.advance()
+
+        if self.current_tok.type == TOKENS.RSQUARE.value:
+            response.register_advance()
+            self.advance()
+        else:
+            element_nodes.append(response.register(self.expression()))
+            if response.error:
+                return response.failure(InvalidSyntaxError(
+                self.current_tok.pos_start, self.current_tok.pos_end,
+                "Expected ']', 'VAR', 'IF', 'FOR', 'WHILE', 'FUN', int, float, identifier, '+', '-', '(', '[' or 'NOT'"
+                ))
+
+            while self.current_tok.type == TOKENS.COMMA.value:
+                response.register_advance()
+                self.advance()
+
+                element_nodes.append(response.register(self.expression()))
+                if response.error: return response
+
+            if self.current_tok.type != TOKENS.RSQUARE.value:
+                return response.failure(InvalidSyntaxError(
+                    self.current_tok.pos_start, self.current_tok.pos_end,
+                    f"Expected ',' or ']'"
+                ))
+
+            response.register_advance()
+            self.advance()
+
+        return response.success(ListNode(
+            element_nodes,
+            pos_start,
+            self.current_tok.pos_end.clone()
+        ))
 
     def expression(self):
         response = ParseResult()

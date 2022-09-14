@@ -18,6 +18,7 @@ atom                  :    INT|FLOAT|STRING|IDENTIFIER
                       :    if-expression
                       :    for-expression
                       :    while-expression
+                      :    list-expression  
 
 if-expression         :    KEYWORD: IF expression KEYWORD:THEN expression
                            (KEYWORD:ELIF expression KEYWORD:THEN expression)*
@@ -27,3 +28,5 @@ for-expression        :    KEYWORD:FOR IDENTIFIER EQUALS expression KEYWORD:TO e
                            (KEYWORD:STEP expression)? KEYWORD:THEN expression
 
 for-expression        :    KEYWORD:WHILE expression KEYWORD:THEN expression
+
+list-expression       :    LSQUARE (expression (COMMA expression)*)? RSQUARE

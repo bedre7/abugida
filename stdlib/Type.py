@@ -1,5 +1,5 @@
 from src.Interpreter.RuntimeResult import RuntimeResult
-
+from src.Error.RuntimeError import RuntimeError
 
 class Type:
     def __init__(self):

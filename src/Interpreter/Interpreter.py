@@ -1,5 +1,6 @@
 from stdlib.String import String
 from stdlib.Number import Number
+from stdlib.List import List
 from utils.Constants import TOKENS
 from src.Interpreter.RuntimeResult import RuntimeResult
 from src.Error.RuntimeError import RuntimeError
@@ -130,6 +131,8 @@ class Interpreter:
     
     def visit_ForNode(self, node, context):
         response = RuntimeResult()
+        elements = []
+
         start_value = response.register(self.visit(node.start_value_node, context))
         if response.error: return response
 
@@ -153,13 +156,16 @@ class Interpreter:
             context.symbol_table.set_value(node.var_name_token.value, Number(i))
             i += step_value.value
 
-            response.register(self.visit(node.body_node, context))
+            elements.append(response.register(self.visit(node.body_node, context)))
             if response.error: return response
 
-        return response.success(None)
+        return response.success(
+            List(elements).set_context(context).set_position(node.pos_start, node.pos_end)
+        )
     
     def visit_WhileNode(self, node, context):
         response = RuntimeResult()
+        elements = []
 
         while True:
             condition = response.register(self.visit(node.condition_node, context))
@@ -167,16 +173,29 @@ class Interpreter:
 
             if not condition.is_true(): break
 
-            response.register(self.visit(node.body_node, context))
+            elements.append(response.register(self.visit(node.body_node, context)))
             if response.error: return response
         
-        return response.success(None)
+        return response.success(
+            List(elements).set_context(context).set_position(node.pos_start, node.pos_end)
+        )
 
     def visit_StringNode(self, node, context):
         return RuntimeResult().success(
             String(node.token.value).set_context(context).set_position(node.pos_start, node.pos_end
             ))
+    
+    def visit_ListNode(self, node, context):
+        response = RuntimeResult()
+        elements = []
 
+        for element_node in node.element_nodes:
+            elements.append(response.register(self.visit(element_node, context)))
+            if response.error: return response
+        
+        return response.success(
+            List(elements).set_context(context).set_position(node.pos_start, node.pos_end)
+        )
                 
         
             

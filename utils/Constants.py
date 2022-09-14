@@ -10,11 +10,17 @@ class SYMBOLS(Enum):
     MINUS          =   '-'
     MUL            =   '*'
     DIV            =   '/'
+    POW            =   '^'
+
     LPAREN         =   '('
     RPAREN         =   ')'
+    LSQUARE        =   '['
+    RSQUARE        =   ']'
+
     DOT            =   '.'
-    POW            =   '^'
     UNDERSCORE     =   '_'
+    COMMA          =   ','
+
     NEQ            =   '!='
     LTH            =   '<'
     GTH            =   '>'
@@ -59,6 +65,10 @@ class TOKENS(Enum):
     STEP        =   'STEP'
 
     STRING      =   'STRING'
+
+    LSQUARE     =   'LSQUARE'
+    RSQUARE     =   'RSQUARE'
+    COMMA       =   'COMMA'
 
 KEYWORDS = [
     'VAR',

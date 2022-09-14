@@ -49,6 +49,12 @@ class Lexer:
             elif self.current_char == SYMBOLS.RPAREN.value:
                 tokens.append(Token(TOKENS.RPAREN.value, pos_start=self.position))
                 self.advance()
+            elif self.current_char == SYMBOLS.LSQUARE.value:
+                tokens.append(Token(TOKENS.LSQUARE.value, pos_start=self.position))
+                self.advance()
+            elif self.current_char == SYMBOLS.RSQUARE.value:
+                tokens.append(Token(TOKENS.RSQUARE.value, pos_start=self.position))
+                self.advance()
             elif self.current_char == SYMBOLS.NEQ.value:
                 token, error = self.make_not_equals()
                 if error: return [], error
