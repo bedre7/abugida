@@ -1,6 +1,8 @@
+from src.Parser.Nodes.InputNode import InputNode
+from src.Parser.Nodes.PrintNode import PrintNode
 from src.Parser.Nodes.StringNode import StringNode
 from src.Parser.Nodes.ListNode import ListNode
-from utils.Constants import TOKENS
+from utils.Constants import SYMBOLS, TOKENS
 from src.Parser.Nodes.ForNode import ForNode
 from src.Parser.Nodes.WhileNode import WhileNode
 from src.Parser.Nodes.VarAccessNode import VarAccessNode
@@ -94,6 +96,18 @@ class Parser:
             
             if response.error: return response
             return response.success(while_expr)
+        
+        elif token.matches(TOKENS.KEYWORD.value, TOKENS.PRINT.value):
+            print_expr = response.register(self.print_expression())
+            
+            if response.error: return response
+            return response.success(print_expr)
+
+        elif token.matches(TOKENS.KEYWORD.value, TOKENS.INPUT.value):
+            input_expr = response.register(self.input_expression())
+            
+            if response.error: return response
+            return response.success(input_expr)
 
         return response.failure(InvalidSyntaxError(
             token.pos_start, token.pos_end, 
@@ -397,6 +411,66 @@ class Parser:
             pos_start,
             self.current_tok.pos_end.clone()
         ))
+    
+    def print_expression(self):
+        response = ParseResult()
+
+        if not self.current_tok.matches(TOKENS.KEYWORD.value, 'PRINT'):
+            return response.failure(InvalidSyntaxError(
+                    self.current_tok.pos_start, self.current_tok.pos_end,
+                    f"Expected PRINT keyword"
+                ))
+            
+        response.register_advance()
+        self.advance()
+
+        if not self.current_tok.type == TOKENS.COLON.value:
+            return response.failure(InvalidSyntaxError(
+                    self.current_tok.pos_start, self.current_tok.pos_end,
+                    f"Expected ':' "
+                ))
+
+        response.register_advance()
+        self.advance()
+
+        content = response.register(self.expression())
+        if response.error: return response
+
+        return response.success(PrintNode(content))
+
+    def input_expression(self):
+        response = ParseResult()
+        pos_start = self.current_tok.pos_start
+        pos_end = self.current_tok.pos_end
+
+        if not self.current_tok.matches(TOKENS.KEYWORD.value, 'INPUT'):
+            return response.failure(InvalidSyntaxError(
+                    self.current_tok.pos_start, self.current_tok.pos_end,
+                    f"Expected INPUT keyword"
+                ))
+        
+        response.register_advance()
+        self.advance()
+
+        if self.current_tok.type != TOKENS.LPAREN.value:
+                return response.failure(InvalidSyntaxError(
+                    self.current_tok.pos_start, self.current_tok.pos_end,
+                    f"Expected '('"
+                ))
+
+        response.register_advance()
+        self.advance()
+        
+        if self.current_tok.type != TOKENS.RPAREN.value:
+                return response.failure(InvalidSyntaxError(
+                    self.current_tok.pos_start, self.current_tok.pos_end,
+                    f"Expected ')'"
+                ))
+
+        response.register_advance()
+        self.advance()
+
+        return response.success(InputNode(pos_start, pos_end))
 
     def expression(self):
         response = ParseResult()
@@ -430,7 +504,23 @@ class Parser:
             return response.success(
                 VarAssignNode(var_name, expr)
             )
+        
+        elif self.current_tok.type == TOKENS.IDENTIFIER.value and self.tokens[self.token_index + 1].type != TOKENS.EOF.value:
+            var_name = self.current_tok
+            response.register_advance()
+            self.advance()
 
+            if self.current_tok.type == TOKENS.EQUALS.value:
+                response.register_advance()
+                self.advance()
+
+                expr = response.register(self.expression())
+
+                if response.error: return response
+
+                return response.success(
+                    VarAssignNode(var_name, expr)
+                )
 
         left = response.register(self.comp_expression())
         if response.error: return response

@@ -25,6 +25,9 @@ class String(Type):
         new.set_position(self.pos_start, self.pos_end)
         new.set_context(self.context)
         return new
+    
+    def __str__(self) -> str:
+        return self.value
 
     def __repr__(self) -> str:
         return f'"{self.value}"'

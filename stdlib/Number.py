@@ -79,3 +79,7 @@ class Number(Type):
 
     def __repr__(self) -> str:
         return str(self.value)
+
+Number.null = Number(0)
+Number.true = Number(1)
+Number.false = Number(0)

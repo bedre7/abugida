@@ -34,7 +34,7 @@ class List(Type):
             return None, Type.illegal_operation(self, other)
 
     def clone(self):
-        new_list = List(self.elements[:])
+        new_list = List(self.elements)
         new_list.set_position(self.pos_start, self.pos_end)
         new_list.set_context(self.context)
 

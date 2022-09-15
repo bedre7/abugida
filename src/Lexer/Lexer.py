@@ -68,6 +68,9 @@ class Lexer:
             elif self.current_char == SYMBOLS.COMMA.value:
                 tokens.append(Token(TOKENS.COMMA.value, pos_start=self.position))
                 self.advance()
+            elif self.current_char == SYMBOLS.COLON.value:
+                tokens.append(Token(TOKENS.COLON.value, pos_start=self.position))
+                self.advance()
             else:
                 pos_start = self.position.clone()
                 char = self.current_char

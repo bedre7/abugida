@@ -20,6 +20,7 @@ class SYMBOLS(Enum):
     DOT            =   '.'
     UNDERSCORE     =   '_'
     COMMA          =   ','
+    COLON          =   ':'
 
     NEQ            =   '!='
     LTH            =   '<'
@@ -69,6 +70,10 @@ class TOKENS(Enum):
     LSQUARE     =   'LSQUARE'
     RSQUARE     =   'RSQUARE'
     COMMA       =   'COMMA'
+    COLON       =   'COLON'
+
+    PRINT       =   'PRINT'
+    INPUT       =   'INPUT'
 
 KEYWORDS = [
     'VAR',
@@ -82,7 +87,9 @@ KEYWORDS = [
     'FOR',
     'TO',
     'STEP',
-    'WHILE'
+    'WHILE',
+    'PRINT',
+    'INPUT'
 ]
 
 DIGITS = '0123456789'

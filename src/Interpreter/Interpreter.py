@@ -33,7 +33,7 @@ class Interpreter:
                 f"'{var_name}' is not defined",
                 context
             ))
-        value = value.clone().set_position(node.pos_start, node.pos_end)
+        value = value.clone().set_position(node.pos_start, node.pos_end).set_context(context)
         return res.success(value)
     
     def visit_VarAssignNode(self, node, context):
@@ -196,6 +196,15 @@ class Interpreter:
         return response.success(
             List(elements).set_context(context).set_position(node.pos_start, node.pos_end)
         )
-                
+
+    def visit_PrintNode(self, node, context):
+        response = RuntimeResult()
+
+        content = response.register(self.visit(node.content, context))
+        if response.error: return response
+        return response.success(content)
         
+    def visit_InputNode(self, node, context):
+        text = input()
+        return RuntimeResult().success(String(text))
             

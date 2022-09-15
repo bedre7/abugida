@@ -1,4 +1,5 @@
 from stdlib.Number import Number
+from stdlib.BuiltInFunction import BuiltInFunction
 from src.Helpers.SymbolTable import SymbolTable
 from src.Interpreter.Interpreter import Interpreter
 from src.Lexer.Lexer import Lexer
@@ -6,9 +7,16 @@ from src.Parser.Parser import Parser
 from utils.Context import Context
 
 global_symbol_table = SymbolTable()
-global_symbol_table.set_value("NULL", Number(0))
-global_symbol_table.set_value("TRUE", Number(1))
-global_symbol_table.set_value("FALSE", Number(0))
+global_symbol_table.set_value("NULL", Number.null)
+global_symbol_table.set_value("TRUE", Number.true)
+global_symbol_table.set_value("FALSE", Number.false)
+global_symbol_table.set_value("PRINT", BuiltInFunction.print)
+global_symbol_table.set_value("INPUT", BuiltInFunction.input)
+global_symbol_table.set_value("CLEAR", BuiltInFunction.clear)
+global_symbol_table.set_value("CLS", BuiltInFunction.clear)
+global_symbol_table.set_value("IS_NUM", BuiltInFunction.is_number)
+global_symbol_table.set_value("IS_STR", BuiltInFunction.is_string)
+global_symbol_table.set_value("IS_LIST", BuiltInFunction.is_list)
 
 def run(file_name, text):
     #Generate tokens
