@@ -2,7 +2,7 @@ from src.Parser.Nodes.InputNode import InputNode
 from src.Parser.Nodes.PrintNode import PrintNode
 from src.Parser.Nodes.StringNode import StringNode
 from src.Parser.Nodes.ListNode import ListNode
-from utils.Constants import SYMBOLS, TOKENS
+from utils.Constants import TOKENS
 from src.Parser.Nodes.ForNode import ForNode
 from src.Parser.Nodes.WhileNode import WhileNode
 from src.Parser.Nodes.VarAccessNode import VarAccessNode
@@ -22,12 +22,20 @@ class Parser:
 
     def advance(self):
         self.token_index += 1
-        if self.token_index < len(self.tokens):
-            self.current_tok = self.tokens[self.token_index]
+        self.update_current_tok()
         return self.current_tok
     
+    def reverse(self, amount = 1):
+        self.token_index -= amount
+        self.update_current_tok()
+        return self.current_tok
+    
+    def update_current_tok(self):
+        if self.token_index < len(self.tokens):
+            self.current_tok = self.tokens[self.token_index]
+            
     def parse(self):
-        response = self.expression()
+        response = self.statements()
 
         if not response.error and self.current_tok.type != TOKENS.EOF.value:
             return response.failure(InvalidSyntaxError(
@@ -471,6 +479,46 @@ class Parser:
         self.advance()
 
         return response.success(InputNode(pos_start, pos_end))
+    
+    def statements(self):
+        response = ParseResult()
+        statements = []
+        pos_start = self.current_tok.pos_start.clone()
+
+        while self.current_tok.type == TOKENS.NEWLINE.value:
+            response.register_advance()
+            self.advance()
+        
+        statement = response.register(self.expression())
+        if response.error: return response
+
+        statements.append(statement)
+
+        more_statements = True
+
+        while True:
+            new_line_count = 0
+            while self.current_tok.type == TOKENS.NEWLINE.value:
+                response.register_advance()
+                self.advance()
+                new_line_count += 1
+            if new_line_count == 0:
+                more_statements = False
+            
+            if not more_statements: break
+            statement = response.try_register(self.expression())
+            
+            if not statement:
+                self.reverse(response.to_reverse_count)
+                more_statements = False
+                continue
+
+            statements.append(statement)
+        return response.success(ListNode(
+            statements,
+            pos_start,
+            self.current_tok.pos_end.clone()
+        ))
 
     def expression(self):
         response = ParseResult()
@@ -505,7 +553,7 @@ class Parser:
                 VarAssignNode(var_name, expr)
             )
         
-        elif self.current_tok.type == TOKENS.IDENTIFIER.value and self.tokens[self.token_index + 1].type != TOKENS.EOF.value:
+        elif self.current_tok.type == TOKENS.IDENTIFIER.value and self.tokens[self.token_index + 1].type == TOKENS.EQUALS.value:
             var_name = self.current_tok
             response.register_advance()
             self.advance()

@@ -5,6 +5,8 @@ class SYMBOLS(Enum):
     WHITESPACE     =   ' \t\n'
     NEWLINE        =   '\n'
     SPACE          =   ' '
+    SEPARATORS     =   ';\n'
+
     EQUALS         =   '='
     PLUS           =   '+'
     MINUS          =   '-'
@@ -59,6 +61,7 @@ class TOKENS(Enum):
     THEN        =   'THEN'
     ELIF        =   'ELIF'
     ELSE        =   'ELSE'
+    END         =   'END'
 
     FOR         =   'FOR'
     WHILE       =   'WHILE'
@@ -74,6 +77,7 @@ class TOKENS(Enum):
 
     PRINT       =   'PRINT'
     INPUT       =   'INPUT'
+    NEWLINE     =   'NEWLINE'
 
 KEYWORDS = [
     'VAR',
@@ -89,7 +93,8 @@ KEYWORDS = [
     'STEP',
     'WHILE',
     'PRINT',
-    'INPUT'
+    'INPUT',
+    'END'
 ]
 
 DIGITS = '0123456789'

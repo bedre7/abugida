@@ -23,6 +23,9 @@ class Lexer:
         while self.current_char != None:
             if self.current_char in ' \t':
                 self.advance()
+            elif self.current_char in SYMBOLS.SEPARATORS.value:
+                tokens.append(Token(TOKENS.NEWLINE.value, pos_start=self.position))
+                self.advance()
             elif self.current_char in DIGITS:
                 tokens.append(self.make_number())
             elif self.current_char in LETTERS:
@@ -55,7 +58,7 @@ class Lexer:
             elif self.current_char == SYMBOLS.RSQUARE.value:
                 tokens.append(Token(TOKENS.RSQUARE.value, pos_start=self.position))
                 self.advance()
-            elif self.current_char == SYMBOLS.NEQ.value:
+            elif self.current_char == SYMBOLS.NEQ.value[0]:
                 token, error = self.make_not_equals()
                 if error: return [], error
                 tokens.append(token)
