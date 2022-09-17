@@ -4,6 +4,7 @@ import string
 class SYMBOLS(Enum):
     WHITESPACE     =   ' \t\n'
     NEWLINE        =   '\n'
+    SEMICOLON      =   ';'
     SPACE          =   ' '
     SEPARATORS     =   ';\n'
 
@@ -74,6 +75,7 @@ class TOKENS(Enum):
     RSQUARE     =   'RSQUARE'
     COMMA       =   'COMMA'
     COLON       =   'COLON'
+    SEMICOLON   =   'SEMICOLON'
 
     PRINT       =   'PRINT'
     INPUT       =   'INPUT'

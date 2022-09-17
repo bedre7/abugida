@@ -1,3 +1,4 @@
+from src.Parser.Nodes.VarAssignNode import VarAssignNode
 from stdlib.String import String
 from stdlib.Number import Number
 from stdlib.List import List
@@ -6,12 +7,17 @@ from src.Interpreter.RuntimeResult import RuntimeResult
 from src.Error.RuntimeError import RuntimeError
 
 class Interpreter:
+    def __init__(self) -> None:
+        self.last_visited_node = None
+
     def visit(self, node, context):
-        # "visit_BinaryOpNode"
-        # "visit_NumberNode"
         method_name = f'visit_{type(node).__name__}'
         method = getattr(self, method_name, self.no_visit_method)
-        return method(node, context)
+        result = method(node, context)
+        if method == self.visit_VarAssignNode:
+            self.last_visited_node = node
+        
+        return result
     
     def no_visit_method(self, node, context):
         raise Exception(f'No visit_{type(node).__name__} method defined')
@@ -37,14 +43,15 @@ class Interpreter:
         return res.success(value)
     
     def visit_VarAssignNode(self, node, context):
-        res = RuntimeResult()
+        res = RuntimeResult(node_type=node)
 
         var_name = node.var_name_token.value
+
         value = res.register(self.visit(node.value_node, context))
         if res.error : return res
 
         context.symbol_table.set_value(var_name, value)
-        return res.success(value)
+        return res.success(value, node_type=node)
 
     def visit_BinOpNode(self, node, context):
         res = RuntimeResult()
@@ -202,6 +209,7 @@ class Interpreter:
 
         content = response.register(self.visit(node.content, context))
         if response.error: return response
+        
         return response.success(content)
         
     def visit_InputNode(self, node, context):

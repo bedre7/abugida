@@ -514,6 +514,7 @@ class Parser:
                 continue
 
             statements.append(statement)
+            
         return response.success(ListNode(
             statements,
             pos_start,

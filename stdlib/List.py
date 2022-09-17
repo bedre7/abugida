@@ -41,4 +41,4 @@ class List(Type):
         return new_list
 
     def __repr__(self) -> str:
-        return f'[{", ".join([str(x) for x in self.elements])}]'
+        return f'[{", ".join([str(x) for x in self.elements])}]' if len(self.elements) > 1 else f'{self.elements[0]}'

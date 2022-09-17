@@ -23,8 +23,8 @@ class Lexer:
         while self.current_char != None:
             if self.current_char in ' \t':
                 self.advance()
-            elif self.current_char in SYMBOLS.SEPARATORS.value:
-                tokens.append(Token(TOKENS.NEWLINE.value, pos_start=self.position))
+            elif self.current_char == SYMBOLS.SEMICOLON.value:
+                tokens.append(Token(TOKENS.SEMICOLON.value, pos_start=self.position))
                 self.advance()
             elif self.current_char in DIGITS:
                 tokens.append(self.make_number())
@@ -74,12 +74,20 @@ class Lexer:
             elif self.current_char == SYMBOLS.COLON.value:
                 tokens.append(Token(TOKENS.COLON.value, pos_start=self.position))
                 self.advance()
+            elif self.current_char == SYMBOLS.NEWLINE.value and tokens and tokens[-1].type != TOKENS.SEMICOLON.value:
+               pos_start = self.position.clone()
+               char = self.current_char
+               self.advance()
+               return [], ExpectedCharError(pos_start, pos_start, "Expected ';' at the end of line\n")
+            elif self.current_char == SYMBOLS.NEWLINE.value:
+                self.advance()
             else:
                 pos_start = self.position.clone()
                 char = self.current_char
                 self.advance()
                 return [], IllegelCharError(pos_start, self.position, f"Unexpected char '{char}'")
 
+        tokens.remove(tokens[-1])
         tokens.append(Token(TOKENS.EOF.value, pos_start = self.position))
         return tokens, None
     

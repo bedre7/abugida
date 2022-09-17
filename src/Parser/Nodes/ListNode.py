@@ -1,6 +1,3 @@
-from turtle import pos
-
-
 class ListNode:
     def __init__(self, element_nodes, pos_start, pos_end):
         self.element_nodes = element_nodes

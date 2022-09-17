@@ -1,0 +1,3 @@
+VAR p = 1;
+PRINT: p;
+FOR j = 0 TO 5 THEN PRINT: j;
