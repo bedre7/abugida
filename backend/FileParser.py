@@ -31,3 +31,11 @@ class FileParser:
                 print(error.message())
             elif self.should_print(last_visited_node):
                 print(result.value)
+
+if __name__ == "__main__":
+    fileparser = FileParser("./abugida.abg")
+    fileparser.execute_run()
+# hello = 'ሃለመሰረሰሸቀበተቸኘአከሀወዘጀየደገፐፈቨ'
+# test = 'ሃለመሰረሰሸቀበተቸኘአከሀወዘጀየደገፐፈቨ'
+# print(hello, test)
+# print(hello == test)
