@@ -1,3 +1,6 @@
+@import './sass/main.scss';
+
 .App {
-  text-align: center;
+  background-color: var(--bg-primary);
+  height: 100vh;
 }

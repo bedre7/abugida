@@ -1,12 +1,11 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import SideBar from './components/SideBar/SideBar';
 
-function App() {
+const App = () => {
   return (
     <div className="App">
-      <header className="App-header">
-      </header>
+      <SideBar/>
     </div>
   );
 }
