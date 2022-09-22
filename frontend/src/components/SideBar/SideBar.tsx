@@ -7,6 +7,7 @@ import { ReactComponent as ExampleIcon } from "../../assets/SVG/clipboard.svg";
 import { ReactComponent as Github } from "../../assets/SVG/github.svg";
 import { ReactComponent as MailIcon } from "../../assets/SVG/mail4.svg";
 import { ReactComponent as LinkedInIcon } from "../../assets/SVG/linkedin.svg";
+import { ReactComponent as CodeIcon } from "../../assets/SVG/embed2.svg";
 
 const SideBar = () => {
   return (
@@ -29,6 +30,12 @@ const SideBar = () => {
           <Link to="/">
             <ExampleIcon />
             <span>Examples</span>
+          </Link>
+        </li>
+        <li>
+          <Link to="/">
+            <CodeIcon />
+            <span style={{marginLeft: '.5rem'}}>Source Code</span>
           </Link>
         </li>
       </ul>

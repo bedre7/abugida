@@ -1,6 +1,10 @@
 @import './sass/main.scss';
 
 .App {
-  background-color: var(--bg-primary);
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+  column-gap: 0rem;
   height: 100vh;
+  overflow: hidden;
 }

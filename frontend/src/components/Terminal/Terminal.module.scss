@@ -1,0 +1,11 @@
+.terminal{
+    height: 100%;
+    color: var(--text-color);
+    
+    .output{
+        font-size: 1.5rem;
+        background-color: var(--bg-primary);
+        height: 100%;
+        padding: 2rem;
+    }
+}
