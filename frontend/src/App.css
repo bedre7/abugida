@@ -1,7 +1,6 @@
 @import './sass/main.scss';
 
 .App {
-  position: relative;
   display: grid;
   grid-template-columns: 1fr 5fr;
   column-gap: 0rem;

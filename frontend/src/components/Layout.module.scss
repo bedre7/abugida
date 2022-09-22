@@ -1,4 +1,5 @@
 .layout{
+    height: 100%;
     font-size: 1.6rem;
     color: white;
     background-color: var(--bg-secondary);
@@ -8,12 +9,7 @@
 
 .terminal{
     font-size: 1.6rem;
-    position: absolute;
     background-color: var(--bg-secondary);
-    top: 45rem;
-    left: 25.1rem;
-    width: 81.5%;
-    height: 100%;
 }
 
 .topbar{

@@ -7,8 +7,8 @@
     height: 95%;
     
     .linebar{
-        overflow-y: auto;
-        height: 100vh;
+        overflow-y: hidden;
+        height: 58vh;
         display: flex;
         flex-direction: column;
         background-color: var(--bg-secondary);
