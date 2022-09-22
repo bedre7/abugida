@@ -23,6 +23,8 @@ class Lexer:
         while self.current_char != None:
             if self.current_char in ' \t':
                 self.advance()
+            elif self.current_char in SYMBOLS.HASH.value:
+                self.skip_comment()
             elif self.current_char == SYMBOLS.SEMICOLON.value:
                 tokens.append(Token(TOKENS.SEMICOLON.value, pos_start=self.position))
                 self.advance()
@@ -213,5 +215,11 @@ class Lexer:
             token_type = TOKENS.ARROW.value
         
         return Token(token_type, pos_start=pos_start, pos_end=self.position)
+    
+    def skip_comment(self):
+        while self.current_char != SYMBOLS.NEWLINE.value:
+            self.advance()
+            
+        self.advance()
 
 

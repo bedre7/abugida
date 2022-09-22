@@ -47,13 +47,20 @@
     justify-content: center;
     margin-left: auto;
     overflow: hidden;
+    color: var(--text-color);
+    font-family: inherit;
+    font-size: 1.8rem;
     cursor: pointer;
+    transition: all .5s;
     
     &:hover svg{
         fill: var(--color-primary);
-        scale: 1.2;
     }
     
+    &:hover{
+        color: var(--color-primary);
+    }
+
     svg{
         fill: var(--text-color);
         height: 3rem;
@@ -64,12 +71,15 @@
 
 @keyframes drop {
     0%{
+        opacity: 0;
         transform: translateY(-100%);
     }
     50%{
+        opacity: 0.5;
         transform: translateY(-50%);
     }
     100%{
+        opacity: 1;
         transform: translateY(0%);
     }
 }

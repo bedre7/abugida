@@ -2,6 +2,7 @@
 
 .App {
   display: grid;
+  background-color: var(--bg-secondary);
   grid-template-columns: 1fr 5fr;
   column-gap: 0rem;
   height: 100vh;

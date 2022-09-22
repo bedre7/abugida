@@ -1,11 +1,14 @@
-import React, { ChangeEvent, useState, useRef } from "react";
-import Layout from "../Layout";
+import React, { ChangeEvent, useState, useRef, FC } from "react";
+import Layout from "../UI/Layout";
 import styles from "./Editor.module.scss";
 
-const Editor = () => {
+const Editor: FC<{ isFullSize: boolean; onRun: (code: string) => void }> = ({
+  isFullSize,
+  onRun,
+}) => {
   const [lines, setLines] = useState([1]);
-  const lineBarRef = useRef<HTMLDivElement>(null);
   const [code, setCode] = useState("");
+  const lineBarRef = useRef<HTMLDivElement>(null);
 
   const textChangeHandler = (event: ChangeEvent<HTMLTextAreaElement>) => {
     const { value } = event.target;
@@ -19,20 +22,36 @@ const Editor = () => {
     }
     setCode(value);
   };
-  
-  const scrollHandler = (event: React.UIEvent<HTMLTextAreaElement, UIEvent>) => {
+
+  const scrollHandler = (
+    event: React.UIEvent<HTMLTextAreaElement, UIEvent>
+  ) => {
     lineBarRef!.current!.scrollTop = event.currentTarget.scrollTop;
-  }
+  };
+
+  const runCode = () => {
+    onRun(code);
+  };
 
   return (
-    <Layout filename="Abugida.abg" buttonType="run">
+    <Layout
+      filename="Abugida.abg"
+      buttonType="run"
+      text="Run"
+      clickHandler={runCode}
+    >
       <div className={styles.input}>
-        <div className={styles.linebar} ref={lineBarRef}>
+        <div
+          className={styles.linebar}
+          ref={lineBarRef}
+          style={{ height: `${isFullSize ? "100vh" : "58vh"}` }}
+        >
           {lines.map((line) => {
             return <span key={line}>{line}</span>;
           })}
         </div>
         <textarea
+          value={code}
           name="code"
           id="code"
           draggable={false}

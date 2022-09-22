@@ -33,28 +33,28 @@ const SideBar = () => {
           </Link>
         </li>
         <li>
-          <Link to="/">
+          <a href="https://github.com/bedre7/abugida" target="blank">
             <CodeIcon />
-            <span style={{marginLeft: '.5rem'}}>Source Code</span>
-          </Link>
+            <span style={{ marginLeft: ".5rem" }}>Source Code</span>
+          </a>
         </li>
       </ul>
       <div className={styles.socials}>
         <ul>
           <li>
-            <Link to="/">
+            <a href="/https://github.com/bedre7" target="blank">
               <Github />
-            </Link>
+            </a>
           </li>
           <li>
-            <Link to="/">
+            <a href="/bedru777@gmail.com" target="blank">
               <MailIcon />
-            </Link>
+            </a>
           </li>
           <li>
-            <Link to="/">
+            <a href="/https://www.linkedin.com/in/bedru-umer/" target="blank">
               <LinkedInIcon />
-            </Link>
+            </a>
           </li>
         </ul>
       </div>

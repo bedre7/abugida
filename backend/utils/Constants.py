@@ -24,6 +24,7 @@ class SYMBOLS(Enum):
     UNDERSCORE     =   '_'
     COMMA          =   ','
     COLON          =   ':'
+    HASH           =   '#'
 
     NEQ            =   '!='
     LTH            =   '<'

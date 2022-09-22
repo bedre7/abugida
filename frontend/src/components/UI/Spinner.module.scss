@@ -1,0 +1,25 @@
+.spinner {
+  position: absolute;
+  top: 30%;
+  left: 45%;
+
+  .circle {
+    border: var(--color-primary-light) dashed 0.4rem;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+    padding: 3rem;
+    animation: spin 2.5s linear infinite;
+  }
+  p{
+    color: var(--color-primary-light);
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
