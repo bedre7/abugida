@@ -3,10 +3,14 @@ import Layout from "../UI/Layout";
 import Spinner from "../UI/Spinner";
 import styles from "./Terminal.module.scss";
 
-const Terminal: FC<{
+interface TerminalProps {
   onClose: (event: React.MouseEvent<HTMLElement>) => void;
   isRunning: boolean;
-}> = ({ onClose, isRunning }) => {
+  output: string[];
+  error: string[];
+}
+
+const Terminal: FC<TerminalProps> = ({ onClose, isRunning, output, error }) => {
   return (
     <Layout
       filename="command line"
@@ -18,6 +22,13 @@ const Terminal: FC<{
         <div className={styles.output}>
           {isRunning && <Spinner />}
           <p>$ output</p>
+          {output && output.map((line, index) => <p key={index}>{line}</p>)}
+          {error &&
+            error.map((line, index) => (
+              <p style={{ color: "orangered" }} key={index}>
+                {line}
+              </p>
+            ))}
         </div>
       </div>
     </Layout>

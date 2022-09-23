@@ -1,5 +1,1 @@
-PRINT: "Enter number:";
-VAR p = INPUT();
-PRINT: p;
-FOR j = 0 TO 5 THEN PRINT: j;
-PRINT: "አቡጊዳ";
+PRINT: "hi there"

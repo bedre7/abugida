@@ -1,18 +1,21 @@
 import React, { ChangeEvent, useState, useRef, FC } from "react";
+import useLocalStorage from "../../hooks/useLocalStorage";
 import Layout from "../UI/Layout";
 import styles from "./Editor.module.scss";
 
-const Editor: FC<{ isFullSize: boolean; onRun: (code: string) => void }> = ({
-  isFullSize,
-  onRun,
-}) => {
-  const [lines, setLines] = useState([1]);
-  const [code, setCode] = useState("");
+interface EditorProps {
+  isFullSize: boolean;
+  onRun: (code: string) => void;
+}
+
+const Editor: FC<EditorProps> = ({ isFullSize, onRun }) => {
+  const [code, setCode] = useLocalStorage("code", 'PRINT: "Hello World!"');
   const lineBarRef = useRef<HTMLDivElement>(null);
+  const [lines, setLines] = useState([1]);
 
   const textChangeHandler = (event: ChangeEvent<HTMLTextAreaElement>) => {
     const { value } = event.target;
-    if (value == "") setLines([1]);
+    if (value === "") setLines([1]);
     else {
       const numberOfLines = value.split(/\r*\n/).length;
 
@@ -35,7 +38,7 @@ const Editor: FC<{ isFullSize: boolean; onRun: (code: string) => void }> = ({
 
   return (
     <Layout
-      filename="Abugida.abg"
+      filename="App.abg"
       buttonType="run"
       text="Run"
       clickHandler={runCode}

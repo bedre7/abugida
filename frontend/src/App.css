@@ -1,4 +1,4 @@
-@import './sass/main.scss';
+@import "./sass/main.scss";
 
 .App {
   display: grid;
@@ -7,4 +7,12 @@
   column-gap: 0rem;
   height: 100vh;
   overflow: hidden;
+}
+
+::-moz-selection {
+  background: var(--color-grey-dark-2);
+}
+
+::selection {
+  background: var(--color-grey-dark-2);
 }
