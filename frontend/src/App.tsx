@@ -4,10 +4,11 @@ import Editor from "./components/Editor/Editor";
 import SideBar from "./components/SideBar/SideBar";
 import Terminal from "./components/Terminal/Terminal";
 import Wrapper from "./components/UI/Wrapper";
-import "./App.css";
+import "./App.scss";
 
 const App = () => {
   const [terminalIsVisible, setTerminalIsVisible] = useState(true);
+  const [showSideBar, setShowSideBar] = useState(true);
   const [isRunning, setIsRunning] = useState(false);
   const [output, setOutput] = useState([]);
   const [error, setError] = useState([]);
@@ -24,7 +25,7 @@ const App = () => {
 
       setOutput(output);
       setError(error);
-
+      
     } catch (error: any) {
       setError(error);
     } finally {
@@ -34,9 +35,13 @@ const App = () => {
 
   return (
     <div className="App">
-      <SideBar />
+      {showSideBar && <SideBar />}
       <Wrapper>
-        <Editor isFullSize={!terminalIsVisible} onRun={runCodeHandler} />
+        <Editor
+          isFullSize={!terminalIsVisible}
+          onRun={runCodeHandler}
+          showSideBar={() => setShowSideBar((prevState) => !prevState)}
+        />
         {terminalIsVisible && (
           <Terminal
             onClose={closeTerminal}

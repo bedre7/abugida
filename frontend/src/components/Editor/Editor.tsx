@@ -2,19 +2,22 @@ import React, { ChangeEvent, useState, useRef, FC } from "react";
 import useLocalStorage from "../../hooks/useLocalStorage";
 import Layout from "../UI/Layout";
 import styles from "./Editor.module.scss";
+import { ReactComponent as MenuIcon } from "../../assets/SVG/menu.svg";
 
 interface EditorProps {
   isFullSize: boolean;
   onRun: (code: string) => void;
+  showSideBar: () => void;
 }
 
-const Editor: FC<EditorProps> = ({ isFullSize, onRun }) => {
+const Editor: FC<EditorProps> = ({ isFullSize, onRun, showSideBar }) => {
   const [code, setCode] = useLocalStorage("code", 'PRINT: "Hello World!"');
   const lineBarRef = useRef<HTMLDivElement>(null);
   const [lines, setLines] = useState([1]);
 
   const textChangeHandler = (event: ChangeEvent<HTMLTextAreaElement>) => {
     const { value } = event.target;
+
     if (value === "") setLines([1]);
     else {
       const numberOfLines = value.split(/\r*\n/).length;
@@ -23,6 +26,7 @@ const Editor: FC<EditorProps> = ({ isFullSize, onRun }) => {
         setLines((prevLines) => Array.from(new Set([...prevLines, i])));
       }
     }
+
     setCode(value);
   };
 
@@ -53,6 +57,9 @@ const Editor: FC<EditorProps> = ({ isFullSize, onRun }) => {
             return <span key={line}>{line}</span>;
           })}
         </div>
+        <button className={styles.menu} onClick={showSideBar}>
+          <MenuIcon />
+        </button>
         <textarea
           value={code}
           name="code"
