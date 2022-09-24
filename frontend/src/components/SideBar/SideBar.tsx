@@ -42,17 +42,17 @@ const SideBar = () => {
       <div className={styles.socials}>
         <ul>
           <li>
-            <a href="/https://github.com/bedre7" target="blank">
+            <a href="https://github.com/bedre7" target="blank">
               <Github />
             </a>
           </li>
           <li>
-            <a href="/bedru777@gmail.com" target="blank">
+            <a href="bedru777@gmail.com" target="blank">
               <MailIcon />
             </a>
           </li>
           <li>
-            <a href="/https://www.linkedin.com/in/bedru-umer/" target="blank">
+            <a href="https://www.linkedin.com/in/bedru-umer/" target="blank">
               <LinkedInIcon />
             </a>
           </li>

@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 function getSavedValue(key: string, initialValue: unknown) {
   const savedValue = JSON.parse(localStorage.getItem(key) || "{}");
+  
   if (savedValue) return savedValue;
 
   return initialValue;
@@ -12,7 +13,7 @@ const useLocalStorage = (key: string, initialValue: unknown) => {
 
   useEffect(() => {
     localStorage.setItem(key, JSON.stringify(value));
-  }, [value]);
+  }, [value, key]);
 
   return [value, setValue];
 };

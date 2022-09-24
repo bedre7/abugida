@@ -9,8 +9,8 @@ import "./App.css";
 const App = () => {
   const [terminalIsVisible, setTerminalIsVisible] = useState(true);
   const [isRunning, setIsRunning] = useState(false);
-  const [outputs, setOutput] = useState([]);
-  const [errors, setError] = useState([]);
+  const [output, setOutput] = useState([]);
+  const [error, setError] = useState([]);
 
   const closeTerminal = () => {
     setTerminalIsVisible(false);
@@ -41,8 +41,8 @@ const App = () => {
           <Terminal
             onClose={closeTerminal}
             isRunning={isRunning}
-            output={outputs}
-            error={errors}
+            output={output}
+            error={error}
           />
         )}
       </Wrapper>
