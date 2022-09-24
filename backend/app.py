@@ -6,6 +6,10 @@ from FileParser import FileParser
 app = Flask(__name__)
 CORS(app)
 
+@app.route('/')
+def index():
+    return "Hello, World!"
+    
 @app.route('/api/input', methods=['POST'])
 @cross_origin()
 def run_code():
