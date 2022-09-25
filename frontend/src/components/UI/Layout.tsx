@@ -8,10 +8,10 @@ import { ReactComponent as CloseIcon } from "../../assets/SVG/cancel-circle.svg"
 interface LayoutProps {
   filename: string;
   element?: string;
-  buttonType: string;
+  buttonType?: string;
   children: ReactNode;
   text?: string;
-  clickHandler: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  clickHandler?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 const Layout: FC<LayoutProps> = ({
   children,
@@ -33,7 +33,7 @@ const Layout: FC<LayoutProps> = ({
           <span>{filename}</span>
         </div>
         <button className={styles.control} onClick={clickHandler}>
-          {buttonType == "run" ? <RunIcon /> : <CloseIcon />}{text}
+          {buttonType === "run" ? <RunIcon /> : <CloseIcon />}{text}
         </button>
       </div>
       {children}

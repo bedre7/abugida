@@ -21,13 +21,13 @@ const SideBar = () => {
           </Link>
         </li>
         <li>
-          <Link to="/">
+          <Link to="/Documentation">
             <DocIcon />
             <span>Documentation</span>
           </Link>
         </li>
         <li>
-          <Link to="/">
+          <Link to="/Examples">
             <ExampleIcon />
             <span>Examples</span>
           </Link>
@@ -47,7 +47,7 @@ const SideBar = () => {
             </a>
           </li>
           <li>
-            <a href="bedru777@gmail.com" target="blank">
+            <a href="mailto:bedru777@gmail.com" target="blank">
               <MailIcon />
             </a>
           </li>

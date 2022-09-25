@@ -21,7 +21,8 @@ const Terminal: FC<TerminalProps> = ({ onClose, isRunning, output, error }) => {
       <div className={styles.terminal}>
         <div className={styles.output}>
           {isRunning && <Spinner />}
-          <p>$ output</p>
+          <p style={{ color: "lightgreen" }}>$ output</p>
+          <p style={{ color: "cyan" }}>@Abugida/App.abg &gt;&gt;</p>
           {output && output.map((line, index) => <p key={index}>{line}</p>)}
           {error &&
             error.map((line, index) => (

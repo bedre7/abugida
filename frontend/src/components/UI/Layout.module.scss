@@ -1,86 +1,74 @@
-.layout{
-    height: 100%;
-    font-size: 1.6rem;
-    color: white;
-    background-color: var(--bg-secondary);
-    width: 100%;
-    animation: drop 0.5s linear;
+@import '../../sass/Animations.scss';
+
+.layout {
+  height: 100%;
+  font-size: 1.6rem;
+  color: white;
+  background-color: var(--bg-secondary);
+  width: 100%;
+  animation: slideInToLeft 0.5s ease-in-out;
 }
 
-.terminal{
-    font-size: 1.6rem;
-    background-color: var(--bg-secondary);
+.terminal {
+  font-size: 1.6rem;
+  background-color: var(--bg-secondary);
+
 }
 
-.topbar{
-    display: flex;
-    align-items: center;
-    padding-right: 3%;
+.topbar {
+  display: flex;
+  align-items: center;
+  padding-right: 3%;
 }
 
-.filename{
-    position: relative;
-    display: inline-flex;
-    align-items: center;
-    font-size: 1.5rem;
-    padding: 0.5rem 1rem 0.5rem 1rem;
-    color: var(--text-color);
-    background-color: var(--bg-primary);
-    box-shadow: var(--box-shadow);
-    z-index: 20;
+.filename {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  font-size: 1.5rem;
+  padding: 0.5rem 1rem 0.5rem 1rem;
+  color: var(--text-color);
+  background-color: var(--bg-primary);
+  box-shadow: var(--box-shadow);
+  z-index: 20;
 
-    svg{
-        fill: var(--color-grey-dark-2);
-        margin-right: 0.75rem;
-        padding-left: 0;
-        height: 2rem;
-        width: 2rem;
-    }
+  svg {
+    fill: var(--color-grey-dark-2);
+    margin-right: 0.75rem;
+    padding-left: 0;
+    height: 2rem;
+    width: 2rem;
+  }
 }
 
-.control{
-    background-color: transparent;
-    border-radius: 50%;
-    border: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-left: auto;
-    overflow: hidden;
-    color: var(--text-color);
-    font-family: inherit;
-    font-size: 1.8rem;
-    cursor: pointer;
-    transition: all .5s;
-    
-    &:hover svg{
-        fill: var(--color-primary);
-    }
-    
-    &:hover{
-        color: var(--color-primary);
-    }
+.control {
+  background-color: transparent;
+  border-radius: 50%;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: auto;
+  overflow: hidden;
+  color: var(--text-color);
+  font-family: inherit;
+  font-size: 1.8rem;
+  cursor: pointer;
+  transition: all 0.5s;
 
-    svg{
-        fill: var(--text-color);
-        height: 3rem;
-        width: 3rem;
-        transition: all .5s;
-        z-index: 10;
-    }
-}
+  &:hover svg {
+    fill: var(--color-primary);
+  }
 
-@keyframes drop {
-    0%{
-        opacity: 0;
-        transform: translateY(-100%);
-    }
-    50%{
-        opacity: 0.5;
-        transform: translateY(-50%);
-    }
-    100%{
-        opacity: 1;
-        transform: translateY(0%);
-    }
+  &:hover {
+    color: var(--color-primary);
+  }
+
+  svg {
+    fill: var(--text-color);
+    height: 3rem;
+    width: 3rem;
+    transition: all 0.5s;
+    z-index: 10;
+  }
 }

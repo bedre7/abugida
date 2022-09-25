@@ -14,7 +14,7 @@ const timeout = () => {
 
 export const RunCodeRequest = async (code: string) => {
   try {
-    const API_END_POINT = process.env.REACT_APP_API_URL;
+    const API_END_POINT = process.env.REACT_APP_API_GLOBAL_URL;
     
     const fetchPromise = fetch(API_END_POINT ?? "./", {
       method: "POST",
