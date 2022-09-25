@@ -13,6 +13,7 @@ class SYMBOLS(Enum):
     MINUS          =   '-'
     MUL            =   '*'
     DIV            =   '/'
+    MOD            =   '%'
     POW            =   '^'
 
     LPAREN         =   '('
@@ -45,6 +46,7 @@ class TOKENS(Enum):
     MINUS       =   'MINUS'
     MUL         =   'MUL'
     DIV         =   'DIV'
+    MOD         =   'MOD'
     POW         =   'POW'
     LPAREN      =   'LPAREN'
     RPAREN      =   'RPAREN'

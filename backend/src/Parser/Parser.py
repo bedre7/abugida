@@ -157,7 +157,7 @@ class Parser:
         left = response.register(self.factor())
         if response.error: return response
 
-        while self.current_tok.type in (TOKENS.MUL.value, TOKENS.DIV.value):
+        while self.current_tok.type in (TOKENS.MUL.value, TOKENS.DIV.value, TOKENS.MOD.value):
             operand_token = self.current_tok
             response.register_advance()
             self.advance()

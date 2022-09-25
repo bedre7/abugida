@@ -1,0 +1,4 @@
+{
+  "title": "About",
+  "description": "Abugida(አቡጊዳ) is low-level programming language supporting basic data types with a built-in Lexer, Parser, Interpreter and Abstract Syntax Tree. It is implemented in python with a simple syntax."
+}

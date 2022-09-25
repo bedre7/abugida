@@ -45,6 +45,9 @@ class Lexer:
             elif self.current_char == SYMBOLS.DIV.value:
                 tokens.append(Token(TOKENS.DIV.value, pos_start=self.position))
                 self.advance()
+            elif self.current_char == SYMBOLS.MOD.value:
+                tokens.append(Token(TOKENS.MOD.value, pos_start=self.position))
+                self.advance()
             elif self.current_char == SYMBOLS.POW.value:
                 tokens.append(Token(TOKENS.POW.value, pos_start=self.position))
                 self.advance()

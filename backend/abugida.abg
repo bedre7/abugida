@@ -1,1 +1,2 @@
-PRINT: "hi there"
+PRINT: "hi there";
+PRINT: 10 % 2;

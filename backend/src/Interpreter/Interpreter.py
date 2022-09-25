@@ -70,6 +70,8 @@ class Interpreter:
             result, error = left.mult_by(right) 
         elif node.op_token.type == TOKENS.DIV.value:
             result, error = left.div_by(right)
+        elif node.op_token.type == TOKENS.MOD.value:
+            result, error = left.mod_by(right)
         elif node.op_token.type == TOKENS.POW.value:
             result, error = left.raised_to(right)
         elif node.op_token.type == TOKENS.EQ.value:

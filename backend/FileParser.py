@@ -48,3 +48,7 @@ class FileParser:
                 outputs.append(str(result.value))
         
         return outputs, errors
+
+if __name__ == '__main__':
+    file_parser = FileParser('Abugida.abg')
+    file_parser.execute_run()

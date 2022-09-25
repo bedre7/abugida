@@ -1,0 +1,52 @@
+{
+  "docs": [
+    {
+      "title": "Data Types",
+      "description": "Abugida(አቡጊዳ) has 3 basic data types:",
+      "details": ["Number", "String", "List"]
+    },
+    {
+      "title": "Variables",
+      "description": "Variables can be defined using the VAR keyword. They can be assigned a value using the = operator.",
+      "details": ["VAR myVar = 1;", "VAR myMessage = \"Hello World\";"]
+    },
+    {
+      "title": "Arithmetic Operators",
+      "description": "The following arithmetic operators are supported up on Numbers and Lists:",
+      "details": ["+", "-", "*", "/", "%"]
+    },
+    {
+      "title": "Comparison Operators",
+      "description": "The following comparison operators are supported on Numbers",
+      "details": ["==", "!=", ">", "<", ">=", "<="]
+    },
+    {
+      "title": "Logical Operators",
+      "description": "The following logical operators are supported",
+      "details": ["AND", "OR", "NOT"]
+    },
+    {
+      "title": "Control Structures and Loops",
+      "description": "Abugida(አቡጊዳ) supports the following control structures:",
+      "details": ["IF/ELIF/ELSE", "FOR", "WHILE"]
+    },
+    {
+      "title": "Functions",
+      "description": "Abugida(አቡጊዳ) supports the following functions:",
+      "details": ["PRINT", "INPUT"]
+    },
+    {
+      "title": "More on Lists",
+      "description": "The following operations are supported on Lists:",
+      "details": ["APPEND: [LIST] + [LIST]", "INSERT: [LIST] + NUMBER"]
+    },
+    {
+      "title": "More on Strings",
+      "description": "The following operations are supported on Strings:",
+      "details": [
+        "Concatenation: STRING + STRING",
+        "Duplication: STRING * NUMBER"
+      ]
+    }
+  ]
+}

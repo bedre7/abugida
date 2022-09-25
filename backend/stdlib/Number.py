@@ -24,6 +24,10 @@ class Number(Type):
         if isinstance(other, Number):
             return Number(self.value * other.value).set_context(self.context), None
 
+    def mod_by(self, other):
+        if isinstance(other, Number):
+            return Number(self.value % other.value).set_context(self.context), None
+
     def raised_to(self, other):
         if isinstance(other, Number):
             return Number(self.value ** other.value).set_context(self.context), None
