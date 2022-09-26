@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 
 function getSavedValue(key: string, initialValue: any) {
-  const savedValue = JSON.parse(localStorage.getItem(key) || initialValue);
+  const savedValue = JSON.parse(
+    localStorage.getItem(key) || JSON.stringify(initialValue)
+  );
 
   if (savedValue) return savedValue;
 
