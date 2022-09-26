@@ -1,16 +1,15 @@
-import React, { FC } from "react";
+import React, { FC, useContext } from "react";
 import Layout from "../UI/Layout";
 import Spinner from "../UI/Spinner";
 import styles from "./Terminal.module.scss";
+import { CodeContext, IContext } from "../../context/CodeContext";
 
 interface TerminalProps {
   onClose: (event: React.MouseEvent<HTMLElement>) => void;
-  isRunning: boolean;
-  output: string[];
-  error: string[];
 }
 
-const Terminal: FC<TerminalProps> = ({ onClose, isRunning, output, error }) => {
+const Terminal: FC<TerminalProps> = ({ onClose }) => {
+  const { isRunning, output, error } = useContext(CodeContext) as IContext;
   return (
     <Layout
       filename="command line"

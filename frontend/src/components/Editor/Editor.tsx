@@ -1,32 +1,32 @@
-import React, { ChangeEvent, useState, useRef, FC } from "react";
-import useLocalStorage from "../../hooks/useLocalStorage";
+import React, { ChangeEvent, useContext, useRef, useEffect, FC } from "react";
 import Layout from "../UI/Layout";
 import styles from "./Editor.module.scss";
 import { ReactComponent as MenuIcon } from "../../assets/SVG/menu.svg";
+import { CodeContext, IContext } from "../../context/CodeContext";
 
 interface EditorProps {
   isFullSize: boolean;
-  onRun: (code: string) => void;
   showSideBar: () => void;
 }
 
-const Editor: FC<EditorProps> = ({ isFullSize, onRun, showSideBar }) => {
-  const [code, setCode] = useLocalStorage("code", 'PRINT: "Hello World!"');
+const Editor: FC<EditorProps> = ({ isFullSize, showSideBar }) => {
   const lineBarRef = useRef<HTMLDivElement>(null);
-  const [lines, setLines] = useState([1]);
+  const {code, lines, setCode, setLines, runCodeHandler} = useContext(CodeContext) as IContext;
 
-  const textChangeHandler = (event: ChangeEvent<HTMLTextAreaElement>) => {
-    const { value } = event.target;
-
+  const updateLines = (value: string) => {
     if (value === "") setLines([1]);
     else {
       const numberOfLines = value.split(/\r*\n/).length;
-
+      setLines([]);
       for (let i = 1; i <= numberOfLines; i++) {
         setLines((prevLines) => Array.from(new Set([...prevLines, i])));
       }
     }
+  };
 
+  const textChangeHandler = (event: ChangeEvent<HTMLTextAreaElement>) => {
+    const { value } = event.target;
+    updateLines(value);
     setCode(value);
   };
 
@@ -37,8 +37,12 @@ const Editor: FC<EditorProps> = ({ isFullSize, onRun, showSideBar }) => {
   };
 
   const runCode = () => {
-    onRun(code);
+    runCodeHandler(code);
   };
+
+  useEffect(() => {
+    updateLines(code);
+  }, [code]);
 
   return (
     <Layout

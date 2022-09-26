@@ -1,12 +1,15 @@
-import React, { FC } from "react";
+import React, { FC, MouseEvent } from "react";
+import { IExample } from "./Examples";
 import styles from "./CodeSnippet.module.scss";
 import { ReactComponent as PlayIcon } from "../../assets/SVG/play3.svg";
-import { IExample } from "./Examples";
 
-const CodeSnippet: FC<{ code: IExample }> = ({ code }) => {
-  const onRunSnippet = () => {
-    
-  }
+const CodeSnippet: FC<{
+  code: IExample;
+  onRunSnippet: (
+    event: MouseEvent<HTMLButtonElement>,
+    snippetCode: string
+  ) => void;
+}> = ({ code, onRunSnippet }) => {
   return (
     <div className={styles.snippet}>
       <h2>{code.title}</h2>
@@ -17,7 +20,10 @@ const CodeSnippet: FC<{ code: IExample }> = ({ code }) => {
         ))}
       </div>
       <div className={styles.control}>
-        <button className={styles.button} onClick={onRunSnippet}>
+        <button
+          className={styles.button}
+          onClick={(e) => onRunSnippet(e, code.code)} 
+        >
           <PlayIcon /> Run
         </button>
       </div>

@@ -22,9 +22,9 @@
         align-items: center;
         justify-content: center;
         background-color: var(--bg-primary);
-        border: var(--color-primary) 1px solid;
+        border: none;
         border-radius: 5px;
-        padding: .1rem .5rem .1rem .25rem;
+        padding: .2rem 1rem .2rem .75rem;
         color: var(--color-primary);
         font-family: inherit;
         font-size: inherit;
@@ -38,7 +38,6 @@
         &:hover{
             color: var(--text-color);
             background-color: var(--bg-secondary);
-            border: transparent 1px solid;
         }
         &:hover svg{
             filter: grayscale(100%);
