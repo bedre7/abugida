@@ -6,11 +6,39 @@
   grid-template-columns: 1fr 5fr;
   column-gap: 0rem;
   height: 100vh;
-  // overflow: hidden;
+  overflow: hidden;
   position: relative;
 
   @media screen and (max-width: 600px) {
     grid-template-columns: 1fr;
+  }
+
+  .menu {
+    position: absolute;
+    top: 6.5%;
+    left: 90%;
+    z-index: 100;
+    background-color: transparent;
+    border: none;
+    @media screen and (min-width: 600px) {
+      display: none;
+    }
+    
+    cursor: pointer;
+    svg {
+      height: 4rem;
+      width: 4rem;
+      fill: var(--color-grey-dark-2);
+      filter: grayscale(100%) opacity(0.7);
+      border: var(--color-primary) 2px solid;
+      border-radius: 10%;
+      padding: 0.1rem;
+      transition: all 0.4s ease-in-out;
+    }
+    &:hover svg{
+      filter: grayscale(0%) opacity(1);
+      fill: var(--color-primary);
+    }
   }
 }
 

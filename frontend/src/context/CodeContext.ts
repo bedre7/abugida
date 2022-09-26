@@ -1,6 +1,6 @@
-import React, { useState, FC, SetStateAction, Dispatch } from "react";
+import React, { SetStateAction, Dispatch } from "react";
 
-export interface IContext {
+export interface ICode {
   code: string;
   lines: number[];
   output: string[];
@@ -10,7 +10,7 @@ export interface IContext {
   setCode: Dispatch<SetStateAction<string>>;
   setLines: Dispatch<SetStateAction<number[]>>;
   setTerminalIsVisible: Dispatch<SetStateAction<boolean>>;
-  runCodeHandler: (code:string) => void;
+  runCodeHandler: (code: string) => void;
 }
 
-export const CodeContext = React.createContext<IContext | null>(null);
+export const CodeContext = React.createContext<ICode | null>(null);

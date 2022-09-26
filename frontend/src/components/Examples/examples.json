@@ -1,29 +1,45 @@
 {
-    "examples": [
-        {
-            "title": "FizzBuzz",
-            "description": "A simple FizzBuzz example",
-            "code": "VAR i = 5;\nIF i % 5 == 0 AND i % 3 == 0 THEN PRINT: \"fizzbuzz\" ELIF i % 3 == 0 THEN PRINT: \"fizz\" ELIF i % 5 == 0 THEN PRINT: \"buzz\" ELSE PRINT: i;"
-        },
-        {
-            "title": "FizzBuzz",
-            "description": "A simple FizzBuzz example",
-            "code": "VAR i = 5;\nIF i % 5 == 0 AND i % 3 == 0 THEN PRINT: \"fizzbuzz\" ELIF i % 3 == 0 THEN PRINT: \"fizz\" ELIF i % 5 == 0 THEN PRINT: \"buzz\" ELSE PRINT: i;"
-        },
-        {
-            "title": "FizzBuzz",
-            "description": "A simple FizzBuzz example",
-            "code": "VAR i = 5;\nIF i % 5 == 0 AND i % 3 == 0 THEN PRINT: \"fizzbuzz\" ELIF i % 3 == 0 THEN PRINT: \"fizz\" ELIF i % 5 == 0 THEN PRINT: \"buzz\" ELSE PRINT: i;"
-        },
-        {
-            "title": "FizzBuzz",
-            "description": "A simple FizzBuzz example",
-            "code": "VAR i = 5;\nIF i % 5 == 0 AND i % 3 == 0 THEN PRINT: \"fizzbuzz\" ELIF i % 3 == 0 THEN PRINT: \"fizz\" ELIF i % 5 == 0 THEN PRINT: \"buzz\" ELSE PRINT: i;"
-        },
-        {
-            "title": "FizzBuzz",
-            "description": "A simple FizzBuzz example",
-            "code": "VAR i = 5;\nIF i % 5 == 0 AND i % 3 == 0 THEN PRINT: \"fizzbuzz\" ELIF i % 3 == 0 THEN PRINT: \"fizz\" ELIF i % 5 == 0 THEN PRINT: \"buzz\" ELSE PRINT: i;"
-        }
-    ]
+  "examples": [
+    {
+      "title": "FizzBuzz",
+      "description": "A simple FizzBuzz example",
+      "codes": [
+        "VAR i = 5;\nIF i % 5 == 0 AND i % 3 == 0 THEN PRINT: \"fizzbuzz\" ELIF i % 3 == 0 THEN PRINT: \"fizz\" ELIF i % 5 == 0 THEN PRINT: \"buzz\" ELSE PRINT: i;"
+      ]
+    },
+    {
+      "title": "Working with Numbers",
+      "description": "Numbers can be used in arithmetics and comparisons",
+      "codes": [
+        "VAR i = 5;\ni = i * 10 + 5;\nPRINT: i;",
+        "VAR a = VAR b = 10;\nPRINT: a + b;",
+        "IF i > 10 THEN PRINT: \"i is greater than 10\" ELSE PRINT:  \"i is less than 10\";",
+        "VAR j = 55;\nIF i == j THEN PRINT: \"i and j are equal\";",
+        "VAR k = 5;\nPRINT: k ^ 2;\nVAR parity = IF k % 2 == 0 THEN \"even\" ELSE \"odd\";\nPRINT: \"k is \" + parity;"
+      ]
+    },
+    {
+      "title": "Working with Strings",
+      "description": "Strings can be concatenated and duplicated",
+      "codes": [
+        "VAR first = \" ኢትዮጵያ \";\nVAR second = \"ለዘላለም ትኑር፡፡\";\nVAR message = first + second;\nPRINT: \"This is a message in Amharic:\" + message;",
+        "PRINT: \"-------------------------\";\nVAR message = \"ኢትዮጵያ \";\nPRINT: message * 3;"
+      ]
+    },
+    {
+      "title": "Working with Lists",
+      "description": "Lists can be appended and concatenated",
+      "codes": [
+        "VAR hobbies = [\"💻\", \"🏊\", \"🚴‍♀️\"];\nVAR others = [\"🧩\", \"🎨\"];\nPRINT: hobbies + others + [\"🏓\"];",
+        "VAR list = [1, 2, 3];\nVAR numberToAppend = 4;\nlist = list + numberToAppend;\nPRINT: list;"
+      ]
+    },
+    {
+      "title": "Working with Loops",
+      "description": "For and While Loops",
+      "codes": [
+        "VAR rocket = \"🚀\";\nFOR i = 0 TO 10 THEN PRINT: rocket * i;"
+      ]
+    }
+  ]
 }

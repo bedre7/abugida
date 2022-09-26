@@ -1,8 +1,14 @@
-import React, { ChangeEvent, useContext, useRef, useEffect, FC } from "react";
+import React, {
+  ChangeEvent,
+  useContext,
+  useRef,
+  useEffect,
+  useCallback,
+  FC,
+} from "react";
 import Layout from "../UI/Layout";
 import styles from "./Editor.module.scss";
-import { ReactComponent as MenuIcon } from "../../assets/SVG/menu.svg";
-import { CodeContext, IContext } from "../../context/CodeContext";
+import { CodeContext, ICode } from "../../context/CodeContext";
 
 interface EditorProps {
   isFullSize: boolean;
@@ -11,18 +17,23 @@ interface EditorProps {
 
 const Editor: FC<EditorProps> = ({ isFullSize, showSideBar }) => {
   const lineBarRef = useRef<HTMLDivElement>(null);
-  const {code, lines, setCode, setLines, runCodeHandler} = useContext(CodeContext) as IContext;
+  const { code, lines, setCode, setLines, runCodeHandler } = useContext(
+    CodeContext
+  ) as ICode;
 
-  const updateLines = (value: string) => {
-    if (value === "") setLines([1]);
-    else {
-      const numberOfLines = value.split(/\r*\n/).length;
-      setLines([]);
-      for (let i = 1; i <= numberOfLines; i++) {
-        setLines((prevLines) => Array.from(new Set([...prevLines, i])));
+  const updateLines = useCallback(
+    (value: string) => {
+      if (value === "") setLines([1]);
+      else {
+        const numberOfLines = value.split(/\r*\n/).length;
+        setLines([]);
+        for (let i = 1; i <= numberOfLines; i++) {
+          setLines((prevLines) => Array.from(new Set([...prevLines, i])));
+        }
       }
-    }
-  };
+    },
+    [setLines]
+  );
 
   const textChangeHandler = (event: ChangeEvent<HTMLTextAreaElement>) => {
     const { value } = event.target;
@@ -42,7 +53,7 @@ const Editor: FC<EditorProps> = ({ isFullSize, showSideBar }) => {
 
   useEffect(() => {
     updateLines(code);
-  }, [code]);
+  }, [code, updateLines]);
 
   return (
     <Layout
@@ -61,9 +72,6 @@ const Editor: FC<EditorProps> = ({ isFullSize, showSideBar }) => {
             return <span key={line}>{line}</span>;
           })}
         </div>
-        <button className={styles.menu} onClick={showSideBar}>
-          <MenuIcon />
-        </button>
         <textarea
           value={code}
           name="code"

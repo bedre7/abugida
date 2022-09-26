@@ -41,30 +41,4 @@
   ::-webkit-scrollbar-thumb:hover {
     background-color: var(--color-primary-dark);
   }
-
-  .menu {
-
-    @media screen and (min-width: 600px) {
-      display: none;
-    }
-    
-    cursor: pointer;
-    svg {
-      position: absolute;
-      top: 1%;
-      left: 90%;
-      height: 4rem;
-      width: 4rem;
-      fill: var(--color-grey-dark-2);
-      filter: grayscale(100%) opacity(0.7);
-      border: var(--color-primary) 2px solid;
-      border-radius: 10%;
-      padding: 0.1rem;
-      transition: all 0.4s ease-in-out;
-    }
-    &:hover svg{
-      filter: grayscale(0%) opacity(1);
-      fill: var(--color-primary);
-    }
-  }
 }

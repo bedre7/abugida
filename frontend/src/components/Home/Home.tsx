@@ -3,14 +3,14 @@ import Wrapper from "../UI/Wrapper";
 import Editor from "../Editor/Editor";
 import styles from "./Home.module.scss";
 import Terminal from "../Terminal/Terminal";
-import { CodeContext, IContext } from "../../context/CodeContext";
+import { CodeContext, ICode } from "../../context/CodeContext";
 
 const Home: FC<{ setShowSideBar: Dispatch<SetStateAction<boolean>> }> = ({
   setShowSideBar,
 }) => {
   const { setTerminalIsVisible, terminalIsVisible } = useContext(
     CodeContext
-  ) as IContext;
+  ) as ICode;
 
   const closeTerminal = () => {
     setTerminalIsVisible(false);
