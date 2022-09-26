@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./SideBar.module.scss";
 import { Link } from "react-router-dom";
 import { ReactComponent as HomeIcon } from "../../assets/SVG/home.svg";
+import { ReactComponent as AboutIcon } from "../../assets/SVG/rocket.svg";
 import { ReactComponent as DocIcon } from "../../assets/SVG/stack.svg";
 import { ReactComponent as ExampleIcon } from "../../assets/SVG/clipboard.svg";
 import { ReactComponent as Github } from "../../assets/SVG/github.svg";
@@ -21,6 +22,12 @@ const SideBar = () => {
           </Link>
         </li>
         <li>
+          <Link to="/About">
+            <AboutIcon />
+            <span>About</span>
+          </Link>
+        </li>
+        <li>
           <Link to="/Documentation">
             <DocIcon />
             <span>Documentation</span>
@@ -35,7 +42,7 @@ const SideBar = () => {
         <li>
           <a href="https://github.com/bedre7/abugida" target="blank">
             <CodeIcon />
-            <span style={{ marginLeft: ".5rem" }}>Source Code</span>
+            <span style={{ marginLeft: "1.5rem" }}>Source Code</span>
           </a>
         </li>
       </ul>

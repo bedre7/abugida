@@ -33,7 +33,7 @@ const Layout: FC<LayoutProps> = ({
           <span>{filename}</span>
         </div>
         <button className={styles.control} onClick={clickHandler}>
-          {buttonType === "run" ? <RunIcon /> : <CloseIcon />}{text}
+          {clickHandler &&( buttonType === "run" ? <RunIcon /> : <CloseIcon />)}{text}
         </button>
       </div>
       {children}

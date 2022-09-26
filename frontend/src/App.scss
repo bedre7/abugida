@@ -6,7 +6,7 @@
   grid-template-columns: 1fr 5fr;
   column-gap: 0rem;
   height: 100vh;
-  overflow: hidden;
+  // overflow: hidden;
   position: relative;
 
   @media screen and (max-width: 600px) {
@@ -20,4 +20,16 @@
 
 ::selection {
   background: var(--color-grey-dark-2);
+}
+::-webkit-scrollbar {
+  width: 1rem;
+}
+::-webkit-scrollbar-track {
+  background-color: var  (--bg-secondary);
+}
+::-webkit-scrollbar-thumb {
+  background-color: var(--color-primary);
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--color-primary-dark);
 }

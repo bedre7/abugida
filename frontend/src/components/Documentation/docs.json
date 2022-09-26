@@ -8,12 +8,12 @@
     {
       "title": "Variables",
       "description": "Variables can be defined using the VAR keyword. They can be assigned a value using the = operator.",
-      "details": ["VAR myVar = 1;", "VAR myMessage = \"Hello World\";"]
+      "details": ["VAR myNum = 1;", "VAR myList = [1, 2, 3];", "VAR myMessage = \"Hello World\";"]
     },
     {
       "title": "Arithmetic Operators",
       "description": "The following arithmetic operators are supported up on Numbers and Lists:",
-      "details": ["+", "-", "*", "/", "%"]
+      "details": ["+", "-", "*", "/", "%", "^ (Power)"]
     },
     {
       "title": "Comparison Operators",
@@ -38,7 +38,7 @@
     {
       "title": "More on Lists",
       "description": "The following operations are supported on Lists:",
-      "details": ["APPEND: [LIST] + [LIST]", "INSERT: [LIST] + NUMBER"]
+      "details": ["Append list: [LIST] + [LIST]", "Insert element: [LIST] + NUMBER | STRING"]
     },
     {
       "title": "More on Strings",

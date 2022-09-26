@@ -1,0 +1,13 @@
+.about{
+    color: var(--text-color);
+    background-color: var(--bg-primary);
+    height: 95%;
+    h1{
+        padding: 2rem;
+        background-color: var(bg-secondary);
+    }
+    p{
+        padding-left: 2rem;
+        width: 60%;
+    }
+}

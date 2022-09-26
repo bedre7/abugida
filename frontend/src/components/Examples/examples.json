@@ -1,0 +1,29 @@
+{
+    "examples": [
+        {
+            "title": "FizzBuzz",
+            "description": "A simple FizzBuzz example",
+            "code": "VAR i = 5;\nIF i % 5 == 0 AND i % 3 == 0 THEN PRINT: \"fizzbuzz\" ELIF i % 3 == 0 THEN PRINT: \"fizz\" ELIF i % 5 == 0 THEN PRINT: \"buzz\" ELSE PRINT: i;"
+        },
+        {
+            "title": "FizzBuzz",
+            "description": "A simple FizzBuzz example",
+            "code": "VAR i = 5;\nIF i % 5 == 0 AND i % 3 == 0 THEN PRINT: \"fizzbuzz\" ELIF i % 3 == 0 THEN PRINT: \"fizz\" ELIF i % 5 == 0 THEN PRINT: \"buzz\" ELSE PRINT: i;"
+        },
+        {
+            "title": "FizzBuzz",
+            "description": "A simple FizzBuzz example",
+            "code": "VAR i = 5;\nIF i % 5 == 0 AND i % 3 == 0 THEN PRINT: \"fizzbuzz\" ELIF i % 3 == 0 THEN PRINT: \"fizz\" ELIF i % 5 == 0 THEN PRINT: \"buzz\" ELSE PRINT: i;"
+        },
+        {
+            "title": "FizzBuzz",
+            "description": "A simple FizzBuzz example",
+            "code": "VAR i = 5;\nIF i % 5 == 0 AND i % 3 == 0 THEN PRINT: \"fizzbuzz\" ELIF i % 3 == 0 THEN PRINT: \"fizz\" ELIF i % 5 == 0 THEN PRINT: \"buzz\" ELSE PRINT: i;"
+        },
+        {
+            "title": "FizzBuzz",
+            "description": "A simple FizzBuzz example",
+            "code": "VAR i = 5;\nIF i % 5 == 0 AND i % 3 == 0 THEN PRINT: \"fizzbuzz\" ELIF i % 3 == 0 THEN PRINT: \"fizz\" ELIF i % 5 == 0 THEN PRINT: \"buzz\" ELSE PRINT: i;"
+        }
+    ]
+}

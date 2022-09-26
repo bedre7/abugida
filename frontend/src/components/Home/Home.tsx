@@ -25,7 +25,7 @@ const Home: FC<{ setShowSideBar: Dispatch<SetStateAction<boolean>> }> = ({
 
       setOutput(output);
       setError(error);
-      console.log(error);
+      
     } catch (error: any) {
       setError([error.message]);
     } finally {

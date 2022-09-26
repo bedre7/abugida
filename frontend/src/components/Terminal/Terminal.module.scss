@@ -1,15 +1,15 @@
 .terminal {
   position: relative;
-  height: 42vh;
+  height: 32vh;
   color: var(--text-color);
   overflow-y: auto;
 
   .output {
       font-size: 1.5rem;
       background-color: var(--bg-primary);
-      height: 100%;
+      height: 100vh;
       padding: 2rem;
-    }
+    }   
     &::-webkit-scrollbar {
         width: 12px;
     }

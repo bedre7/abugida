@@ -6,12 +6,12 @@
   height: 100vh;
   width: 25rem;
   background-color: var(--bg-secondary);
+  z-index: 100;
 
   @media screen and (max-width: 600px) {
     position: absolute;
     top: 0;
     left: 0;
-    z-index: 100;
     animation: slideIn 0.3s ease-in-out;
   }
 
@@ -25,7 +25,7 @@
     padding: 1rem;
     
     @media screen and (min-width: 600px) {
-      animation: fadeIn 0.5s ease-out 1.5s backwards;
+      animation: fadeIn 0.5s ease-out 1.6s backwards;
     }
   }
   .links {
@@ -47,14 +47,20 @@
         animation:  slideIn .5s linear backwards;
       }
 
-      &:nth-child(2) {
+      &:nth-child(1) {
         animation-delay: 400ms;
       }
-      &:nth-child(3) {
+      &:nth-child(2) {
         animation-delay: 600ms;
       }
-      &:nth-child(4) {
+      &:nth-child(3) {
         animation-delay: 800ms;
+      }
+      &:nth-child(4) {
+        animation-delay: 1000ms;
+      }
+      &:nth-child(5) {
+        animation-delay: 1200ms;
       }
 
       &::after {
@@ -78,8 +84,10 @@
       filter: grayscale(100%) opacity(0.7);
       transition: all 0.3s;
 
-      & > * {
+      svg {
         margin: 2rem;
+        width: 3.5rem;
+        height: 3.5rem;
         fill: grey;
         transition: all 0.5s;
       }
@@ -111,7 +119,7 @@
     padding: 1rem;
     
     @media screen and (min-width: 600px) {
-      animation: slideIn .5s linear backwards 1.3s;
+      animation: slideIn .5s linear backwards 1.4s;
     }
 
     ul {

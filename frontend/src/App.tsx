@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import Home from "./components/Home/Home";
+import About from "./components/About/About";
+import SideBar from "./components/SideBar/SideBar";
 import Examples from "./components/Examples/Examples";
 import Documentation from "./components/Documentation/Documentation";
-import SideBar from "./components/SideBar/SideBar";
 import "./App.scss";
 
 const App = () => {
@@ -14,6 +15,7 @@ const App = () => {
       {showSideBar && <SideBar />}
       <Routes>
         <Route path="/" element={<Home setShowSideBar={setShowSideBar} />} />
+        <Route path="/About" element={<About />} />
         <Route path="/Documentation" element={<Documentation />} />
         <Route path="/Examples" element={<Examples />} />
       </Routes>
