@@ -8,7 +8,7 @@
   background-color: var(--bg-secondary);
   z-index: 100;
 
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width: 700px) {
     position: absolute;
     top: 0;
     left: 0;
@@ -23,8 +23,8 @@
     align-items: center;
     justify-content: center;
     padding: 1rem;
-    
-    @media screen and (min-width: 600px) {
+
+    @media screen and (min-width: 700px) {
       animation: fadeIn 0.5s ease-out 1.6s backwards;
     }
   }
@@ -43,8 +43,8 @@
       margin-bottom: 0.2rem;
       position: relative;
 
-      @media screen and (min-width: 600px) {
-        animation:  slideIn .5s linear backwards;
+      @media screen and (min-width: 700px) {
+        animation: slideIn 0.5s linear backwards;
       }
 
       &:nth-child(1) {
@@ -66,7 +66,7 @@
       &::after {
         content: "";
         position: absolute;
-        height: .1px;
+        height: 0.1px;
         width: 75%;
         background-color: var(--color-primary);
         top: 5.2rem;
@@ -117,9 +117,9 @@
     display: flex;
     align-items: center;
     padding: 1rem;
-    
-    @media screen and (min-width: 600px) {
-      animation: slideIn .5s linear backwards 1.4s;
+
+    @media screen and (min-width: 700px) {
+      animation: slideIn 0.5s linear backwards 1.4s;
     }
 
     ul {
@@ -149,5 +149,14 @@
         }
       }
     }
+  }
+}
+
+.active {
+  filter: grayscale(0%) opacity(1) !important;
+  background-color: var(--bg-primary) !important;
+
+  svg {
+    fill: var(--color-primary) !important;
   }
 }

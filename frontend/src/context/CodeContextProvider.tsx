@@ -4,12 +4,12 @@ import { RunCodeRequest } from "../api/RunCodeRequest";
 import useLocalStorage from "../hooks/useLocalStorage";
 
 const CodeContextProvider: FC<{ children: React.ReactNode }> = (props) => {
-  const [terminalIsVisible, setTerminalIsVisible] = useState(true);
   const [isRunning, setIsRunning] = useState(false);
   const [output, setOutput] = useState<string[]>([]);
   const [error, setError] = useState<string[]>([]);
-  const [code, setCode] = useLocalStorage("code", 'PRINT: "Hello World!"');
   const [lines, setLines] = useState<number[]>([1]);
+  const [terminalIsVisible, setTerminalIsVisible] = useState(true);
+  const [code, setCode] = useLocalStorage("code", 'PRINT: "Hello World!";');
 
   const runCodeHandler = async (code: string) => {
     setTerminalIsVisible(true);

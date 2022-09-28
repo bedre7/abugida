@@ -4,7 +4,7 @@
       "title": "FizzBuzz",
       "description": "A simple FizzBuzz example",
       "codes": [
-        "VAR i = 5;\nIF i % 5 == 0 AND i % 3 == 0 THEN PRINT: \"fizzbuzz\" ELIF i % 3 == 0 THEN PRINT: \"fizz\" ELIF i % 5 == 0 THEN PRINT: \"buzz\" ELSE PRINT: i;"
+        "VAR i = 10;\nIF i % 5 == 0 AND i % 3 == 0 THEN PRINT: \"fizzbuzz\" ELIF i % 3 == 0 THEN PRINT: \"fizz\" ELIF i % 5 == 0 THEN PRINT: \"buzz\" ELSE PRINT: i;"
       ]
     },
     {

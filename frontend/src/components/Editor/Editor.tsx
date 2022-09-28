@@ -12,10 +12,9 @@ import { CodeContext, ICode } from "../../context/CodeContext";
 
 interface EditorProps {
   isFullSize: boolean;
-  showSideBar: () => void;
 }
 
-const Editor: FC<EditorProps> = ({ isFullSize, showSideBar }) => {
+const Editor: FC<EditorProps> = ({ isFullSize }) => {
   const lineBarRef = useRef<HTMLDivElement>(null);
   const { code, lines, setCode, setLines, runCodeHandler } = useContext(
     CodeContext

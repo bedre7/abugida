@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./SideBar.module.scss";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { ReactComponent as HomeIcon } from "../../assets/SVG/home.svg";
 import { ReactComponent as AboutIcon } from "../../assets/SVG/rocket.svg";
 import { ReactComponent as DocIcon } from "../../assets/SVG/stack.svg";
@@ -10,34 +10,37 @@ import { ReactComponent as MailIcon } from "../../assets/SVG/mail4.svg";
 import { ReactComponent as LinkedInIcon } from "../../assets/SVG/linkedin.svg";
 import { ReactComponent as CodeIcon } from "../../assets/SVG/embed2.svg";
 
+const setStyle = ({ isActive }: { isActive: boolean }) =>
+  isActive ? styles.active : "";
+
 const SideBar = () => {
   return (
     <nav className={styles.sidebar}>
       <header>&lt;Abugida/&gt;</header>
       <ul className={styles.links}>
         <li>
-          <Link to="/">
+          <NavLink to="/" className={setStyle}>
             <HomeIcon />
             <span>Home</span>
-          </Link>
+          </NavLink>
         </li>
         <li>
-          <Link to="/About">
+          <NavLink to="/About" className={setStyle}>
             <AboutIcon />
             <span>About</span>
-          </Link>
+          </NavLink>
         </li>
         <li>
-          <Link to="/Documentation">
+          <NavLink to="/Documentation" className={setStyle}>
             <DocIcon />
             <span>Documentation</span>
-          </Link>
+          </NavLink>
         </li>
         <li>
-          <Link to="/Examples">
+          <NavLink to="/Examples" className={setStyle}>
             <ExampleIcon />
             <span>Examples</span>
-          </Link>
+          </NavLink>
         </li>
         <li>
           <a href="https://github.com/bedre7/abugida" target="blank">

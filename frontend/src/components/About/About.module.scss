@@ -2,12 +2,24 @@
     color: var(--text-color);
     background-color: var(--bg-primary);
     height: 95%;
-    h1{
+    h1, h3{
         padding: 2rem;
         background-color: var(bg-secondary);
+    }
+    h3{
+        margin-top: 3rem;
     }
     p{
         padding-left: 2rem;
         width: 60%;
+
+        a{
+            color: var(--color-primary);
+            transition: all 0.3s ease-in-out;
+
+            &:hover{
+                color: var(--text-color);
+            }
+        }
     }
 }
