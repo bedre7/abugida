@@ -1,4 +1,4 @@
-const TIMEOUT_SECONDS = 30;
+const TIMEOUT_SECONDS = 180;
 
 const timeout = () => {
   return new Promise((_, reject) => {
