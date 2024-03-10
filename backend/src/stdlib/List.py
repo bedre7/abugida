@@ -1,5 +1,5 @@
 from .Type import Type
-from stdlib.Number import Number
+from src.stdlib.Number import Number
 from src.Error.RuntimeError import RuntimeError
 
 class List(Type):

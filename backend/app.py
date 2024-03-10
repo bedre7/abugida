@@ -1,17 +1,16 @@
 from flask import Flask, request
-from flask_cors import CORS, cross_origin
+from flask_cors import cross_origin
 
 from FileParser import FileParser
 
 app = Flask(__name__)
-CORS(app)
     
-@app.route('/api/input', methods=['POST'])
+@app.route('/api/compile', methods=['POST'])
 @cross_origin()
 def run_code():
     code = request.json['code']
     fileParser = FileParser("app.abg")
-
+    print("code: ", code)
     outputs, errors = fileParser.run_from_script(code)
     
     return {'error': errors, 'output': outputs}

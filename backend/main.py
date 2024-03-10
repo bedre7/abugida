@@ -1,4 +1,4 @@
-from stdlib.Number import Number
+from src.stdlib.Number import Number
 from src.Helpers.SymbolTable import SymbolTable
 from src.Interpreter.Interpreter import Interpreter
 from src.Lexer.Lexer import Lexer

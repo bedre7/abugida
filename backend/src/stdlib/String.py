@@ -1,5 +1,6 @@
-from stdlib.Type import Type
-from stdlib.Number import Number
+from src.stdlib.Type import Type
+from src.stdlib.Number import Number
+
 class String(Type):
     def __init__(self, value):
         super().__init__()

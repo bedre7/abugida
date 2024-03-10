@@ -1,5 +1,5 @@
 from src.Error.RuntimeError import RuntimeError
-from stdlib.Type import Type
+from src.stdlib.Type import Type
 
 class Number(Type):
     def __init__(self, value):
