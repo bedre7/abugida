@@ -10,10 +10,9 @@ app = Flask(__name__)
 def run_code():
     code = request.json['code']
     fileParser = FileParser("app.abg")
-    print("code: ", code)
     outputs, errors = fileParser.run_from_script(code)
     
     return {'error': errors, 'output': outputs}
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host='0.0.0.0', port=5000, debug=False)

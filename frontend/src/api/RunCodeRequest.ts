@@ -15,7 +15,7 @@ const timeout = () => {
 export const RunCodeRequest = async (code: string) => {
   try {
     const API_END_POINT = process.env.REACT_APP_API_GLOBAL_URL;
-    
+
     const fetchPromise = fetch(API_END_POINT ?? "./", {
       method: "POST",
       headers: {
@@ -24,18 +24,16 @@ export const RunCodeRequest = async (code: string) => {
       body: JSON.stringify({ code: code }),
     });
 
-    const response: any = await Promise.race(
-      [fetchPromise, timeout()]
-    );
+    const response: any = await Promise.race([fetchPromise, timeout()]);
 
     const data = await response.json();
-    
+
     return {
       output: data.output,
-      error: data.error
+      error: data.error,
     };
-
   } catch (error) {
+    console.error(error);
     throw error;
   }
 };
