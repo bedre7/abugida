@@ -2,15 +2,16 @@
   "version": 2,
   "builds": [
     {
-      "src": "backend/app.py",
+      "src": "app.py",
       "use": "@vercel/python",
       "config": { "maxLambdaSize": "15mb", "runtime": "python3.10" }
     }
   ],
   "routes": [
+    { "handle": "filesystem" },
     {
-      "src": "/backend/(.*)",
-      "dest": "backend/app.py"
+      "src": "/(.*)",
+      "dest": "app.py"
     }
   ]
 }
