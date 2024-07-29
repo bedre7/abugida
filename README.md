@@ -20,10 +20,6 @@
   - And more...
 - It has built-in Lexer, Parser, Interpreter and Abstract Syntax Tree implemented in python with a simple syntax.
 
-## 🗒️ Disclaimer
-
-- This project is made for learning and practicing purposes only, not for production use.
-
 ## 👏 Acknowledgements
 
 - This project is inspired by Ruslan's ["Let's Build a Simple Interpreter"](https://ruslanspivak.com/lsbasi-part1/) Blog
